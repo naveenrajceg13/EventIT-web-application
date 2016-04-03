@@ -48,23 +48,28 @@
 <header id="header" role="banner">
       <div class="main-nav fixed-menu">
     <div class="container">
-          <div class="header-top">
-        <div class="pull-right social-icons"> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-google-plus"></i></a> <a href="#"><i class="fa fa-youtube"></i></a> </div>
-      </div>
-          <div class="row">
-        <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-              <a class="navbar-brand" href="index.html"> <img class="img-responsive" src="images/eventlogo.png" alt="logo"> </a> </div>
-        <div class="collapse navbar-collapse">
-             
-             <li class="scroll nav navbar-nav navbar-right"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll active nav navbar-nav navbar-right"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="reservationHistory.jsp">Reservation History</a></li>
-		        
+         <div class="header-top">
+ 
+      	</div>
+        <div class="row">
+        	<div class="navbar-header">
+		                
+		                <div class="navbar-brand" >
+		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
+		                </div>                  
+		            </div>
+        	<div class="collapse navbar-collapse">
+             	<div class="nav navbar-nav navbar-right">
+                    <li class="scroll"><a href="home.jsp">Home</a></li>
+                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                         
+                    <li class="scroll"><a href="event.jsp">Create Event</a></li>
+                    <li class="scroll active"><a href="manage.jsp">Manage Worklist</a></li>
+                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
+                    <li class="scroll"><a href="#">My Profile</a></li>
+                    <li class="scroll"><a href="#">Logout</a></li>
+            	</div>
             </div>
-      </div>
+      	</div>
         </div>
   </div>
     </header>

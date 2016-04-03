@@ -99,7 +99,7 @@ public class DBcontroller extends HttpServlet {
 	 */
 	public boolean saveEvent(Event e) {
 		
-		return db.saveevent(e.eventid, e.eventname, e.venue, e.dates, e.descr, e.username,e.numticket,con);
+		return db.saveevent(e.eventid, e.eventname, e.venue, e.dates, e.descr, e.username,e.numticket,con,e.time);
 		
 		
 	}

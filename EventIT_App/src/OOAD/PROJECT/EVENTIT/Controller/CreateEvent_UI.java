@@ -55,6 +55,7 @@ public class CreateEvent_UI extends HttpServlet {
 		Decr=request.getParameter("descr");
 		Venue=request.getParameter("venue");
 		Dates=request.getParameter("date");
+		Time=request.getParameter("time");
 		int numticket=Integer.parseInt(request.getParameter("numticket"));
 		int max_event=1;
 		String username=(getServletContext().getAttribute("Login_Name").toString());
@@ -70,7 +71,7 @@ public class CreateEvent_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 			if(ev!=null){
-				result=ev.createEvent(EventName, Decr, Venue, Dates,username,numticket,"P");
+				result=ev.createEvent(EventName, Decr, Venue, Dates,username,numticket,"P",Time);
 				
 			}
 			if(result==true)

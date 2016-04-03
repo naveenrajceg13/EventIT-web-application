@@ -54,19 +54,20 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="index.html">
+		                <div class="navbar-brand">
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
-		                </a>                    
+		                </div>                    
 		            </div>
 		            <div class="collapse navbar-collapse">
-		                     
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll active nav navbar-nav navbar-right"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll nav navbar-nav navbar-right"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="reservationHistory.jsp">Reservation History</a></li>
-		                    
-		                
+		                 <div class="nav navbar-nav navbar-right">     
+		                    <li class="scroll"><a href="home.jsp">Home</a></li>
+		                    <li class="scroll active"><a href="browse.jsp">Browse Events</a></li>    
+                            <li class="scroll"><a href="event.jsp">Create Event</a></li>
+                            <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
+		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
+		                    <li class="scroll"><a href="#">My Profile</a></li>
+                            <li class="scroll"><a href="#">Logout</a></li>
+		                </div>
 		            </div>
 		        </div>
 	        </div>
@@ -135,8 +136,7 @@
 	</div>
     </div>
            <div class="rightdiv" id="browsetable">
-          
-           </div>
+          	
        </div>
 
     </section>

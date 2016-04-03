@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>EventIt Create event</title>
+    <title>EventIt Event Details</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
@@ -28,6 +28,9 @@
 	.form-control{
 		width:800px
 		}
+	#dates,#time,#tickets{
+		width:200px
+		}
 	</style>
    
 </head><!--/head-->
@@ -44,18 +47,19 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="index.html">
+		                <div class="navbar-brand">
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
-		                </a>                    
+		                </div>                    
 		            </div>
 		            <div class="collapse navbar-collapse">
-		                             
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll active nav navbar-nav navbar-right"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="reservationHistory.jsp">Reservation History</a></li>
-		                    
+		            	<div class="nav navbar-nav navbar-right">       
+		                    <li class="scroll"><a href="home.jsp">Home</a></li>
+		                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                            <li class="scroll"><a href="event.jsp">Create Event</a></li>
+                            <li class="scroll active"><a href="manage.jsp">Manage Worklist</a></li>
+		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
+		                    <li class="scroll"><a href="#">My Profile</a></li>
+               				<li class="scroll"><a href="#">Logout</a></li>
+                       	</div>
 		            </div>
 		        </div>
 	        </div>
@@ -71,24 +75,30 @@
             </tr>
             <tr>
                 <td>Event Name:</td>
-                <td><input type="text" placeholder="Event name" class="form-control" name="title" id="eventname" readonly="readonly" /></td>
+                <td><input type="text" placeholder="Event name" class="form-control" name="title" id="eventname" readonly /></td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><textarea placeholder="Descriotion" class="form-control" readonly="readonly" id="descr"></textarea></td>
+                <td><textarea placeholder="Descriotion" class="form-control" readonly id="descr"></textarea></td>
             </tr>
             <tr>
                 <td>Venue:</td>
-                <td><textarea placeholder="Address" class="form-control" readonly="readonly" id="venue"></textarea></td>
+                <td><textarea placeholder="Address" class="form-control" readonly id="venue"></textarea></td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td><input type="text" placeholder="Event date" class="form-control datepicker" name="date" id="dates" readonly="readonly"/></td>
+                <td><input type="text" placeholder="Event date" class="form-control datepicker" name="date" id="dates" readonly/></td>
             </tr>
             <tr>
+            <tr>
+                <td>Time:</td>
+                <td><input type="text"  id="time" class="form-control" name="time" readonly/></td>
+            </tr>
 			<tr>
                 <td>Total number of tickets:</td>
-                <td><input type="text" placeholder="Total tickets for the event" class="form-control" name="tickets" id="tickets" readonly="readonly" /></td>
+                <td>
+                <input type="text" placeholder="Total tickets for the event" class="form-control" name="tickets" id="tickets" readonly />
+                </td>
             </tr>
             
             <tr>

@@ -12,6 +12,7 @@ public class Event {
 	public String username;
 	public int numticket;
 	public String status;
+	public String time; 
 	public ArrayList<Integer> events=new ArrayList<Integer>();
 
 	/**
@@ -22,7 +23,7 @@ public class Event {
 	 * @param Date
 	 * @param Time
 	 */
-	public boolean createEvent(String EventName, String Decr, String Venue, String Dates,String user,int numtick,String Status) {
+	public boolean createEvent(String EventName, String Decr, String Venue, String Dates,String user,int numtick,String Status,String Time) {
 		
 		
 		 eventid=eventid+1;
@@ -33,6 +34,7 @@ public class Event {
 		 this.username=user;
 		 this.numticket=numtick;
 		 this.status=Status;
+		 this.time=Time;
 		return true;
 		
 	}

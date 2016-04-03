@@ -35,6 +35,9 @@
         padding-bottom: .5em;
 		padding-right: .3em;
 		}
+	.navbar-right {
+	    padding: 0px	
+	}
     </style>
 </head><!--/head-->
 
@@ -47,7 +50,7 @@
 
 					</div>
 				</div>     
-		        <div class="row">	        		
+		        <div class="row" style="background-color:#1B7B98;height:90px">	        		
 		            <div class="navbar-header">
 		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 		                    <span class="sr-only">Toggle navigation</span>
@@ -55,16 +58,21 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="index.html">
+		                <div class="navbar-brand">
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
-		                </a>                    
+		                </div>                   
 		            </div>
 		            <div class="collapse navbar-collapse">
-		                    <li class="scroll active nav navbar-nav navbar-right"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll nav navbar-nav navbar-right"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="reservationHistory.jsp">Reservation History</a></li>
+                    	
+                    	<div class="nav navbar-nav navbar-right"> 
+		                    <li class="scroll active"><a href="home.jsp">Home</a></li>
+		                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                         
+		                    <li class="scroll"><a href="event.jsp">Create Event</a></li>
+                            <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
+		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
+                            <li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
+                            <li class="scroll"><a href="#">Logout</a></li>
+                     	</div>
 		   
 		               
 		            </div>

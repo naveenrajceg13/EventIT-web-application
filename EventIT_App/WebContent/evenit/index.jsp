@@ -14,16 +14,11 @@
     <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <SCRIPT src="js/login_check.js"></SCRIPT>
     <SCRIPT src="js/create_user.js"></SCRIPT>
-    <SCRIPT src="js/fb_check.js"></SCRIPT>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+   
     <style type="text/css">
 	.btn{
 		background-color:#1B7B98 !important
@@ -44,31 +39,19 @@
 		<div class="main-nav">
 			<div class="container">
 				<div class="header-top">
-					<div class="pull-right social-icons">
-                     
-					</div>
+					
 				</div>     
 		        <div class="row">	        		
 		            <div class="navbar-header">
-		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		                    <span class="sr-only">Toggle navigation</span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                    <span class="icon-bar"></span>
-		                </button>
-		                <a class="navbar-brand" href="index.html">
+		                
+		                <div class="navbar-brand" >
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
-		                </a>                    
+		                </div>                  
 		            </div>
-		            <div
-                          class="fb-like"
-                          data-share="true"
-                          data-width="450"
-                          data-show-faces="true">
-                    </div>
 		            <div class="collapse navbar-collapse">
-		                               
-		                   <li class="scroll nav navbar-nav navbar-right""><a href='browse.jsp'>Browse Events</a></li>                         
+		            	<div class="nav navbar-nav navbar-right">           
+		                   <li class="scroll"><a href='browse.jsp'>Browse Events</a></li>
+                        </div>                         
 		                    
 		               
 		            </div>
@@ -82,22 +65,17 @@
     <form id="login_check">
 		<div id="main-slider" class="carousel slide" id="login_display" data-ride="carousel" style="height: 650px;">
 			<div class="carousel-inner">
-				<div class="item active">
+				<div>
 				    
-					<img class="img-responsive" src="images/Banner.jpg" alt="slider">						
+					<img class="img-responsive" src="images/Banner.jpg">						
 					<div class="carousel-caption" style="margin-left:20%; margin-bottom:10%;">
 						<h2> Get started now! </h2>
 						<input type="text" id="email" placeholder="Email" class="form-control" style="width:200px" /><br/>
                         <input type="password" id="password" placeholder="Password" class="form-control" style="width:200px" /><br/>
                         <input type="submit" class="btn btn-primary" style="width:200px" value="Login" /><br/> <br/>
                         Not a member? <a href="#" data-toggle="modal" data-target="#signup">Sign up</a>
-                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-                        </fb:login-button>
-                        <div id="status">
-                        </div>
 						<div id="displayName" style='color:red'></div>
 						<div id="ResultofRegister" style='color:green'  ></div>
-						
 					</div>
 				</div>
 						

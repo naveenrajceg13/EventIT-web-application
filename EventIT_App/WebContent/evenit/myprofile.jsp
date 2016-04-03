@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>EventIt Create event</title>
+    <title>EventIt My Profile</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/animate.css" rel="stylesheet">	
 	<link href="css/responsive.css" rel="stylesheet">
     <link href="css/jquery.timepicker.css" rel="stylesheet">
-    <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
-    <SCRIPT src="js/home.js"></SCRIPT>
-    <SCRIPT src="js/event_create.js"></SCRIPT>
-    
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -26,15 +22,29 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css" />
+    <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <style>
 	.form-control{
 		width:800px
 		}
-	#date,#time,#numticket{
+	#email,#phone,#username,#opassword,#cpassword,#npassword{
 		width:200px
 		}
+	.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+        border: none;
+    }
 	</style>
-   
+    <script type="text/javascript">
+	$(document).ready(function(){
+		$('#edit').click(function(){
+			$('#name').prop('readonly',false);
+			$('#address').prop('readonly',false);
+			$('#phone').prop('readonly',false);
+			$('#email').prop('readonly',false);
+			return false;
+			});
+		});
+    </script>
 </head><!--/head-->
 
 <body>
@@ -43,68 +53,85 @@
 			<div class="container">
 				<div class="row">	        		
 		            <div class="navbar-header">
-		               
+		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		                    <span class="sr-only">Toggle navigation</span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                </button>
 		                <div class="navbar-brand">
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
 		                </div>                    
 		            </div>
 		            <div class="collapse navbar-collapse">
-                    	<div class="nav navbar-nav navbar-right"> 
+		            	<div class="nav navbar-nav navbar-right">       
 		                    <li class="scroll"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll active"><a href="event.jsp">Create Event</a></li>
+		                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                            
+                            <li class="scroll"><a href="event.jsp">Create Event</a></li>
                             <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
 		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
-		   					<li class="scroll"><a href="#">My Profile</a></li>
-                            <li class="scroll"><a href="#">Logout</a></li>
-		               	</div>
+		                    <li class="scroll active"><a href="#">My Profile</a></li>
+               				<li class="scroll"><a href="#">Logout</a></li>
+                       	</div>
 		            </div>
 		        </div>
 	        </div>
         </div>                    
     </header>
     <!--/#header--> 
-    <form id="createevent">
+    <form id="my_profile">
     <center>
     <section id="create" style="min-height:500px;margin-top:95px;position:relative;color:black;width:80%;">	
-		<table class="table table-bordered">
+		<table class="table table-borderless">
             <tr>
-                <td colspan="2" style="text-align:center"><h3>Create Event</h3></td>
+                <td colspan="2" style="text-align:center"><h3>My Profile</h3></td>
             </tr>
             <tr>
-                <td>Event Name:</td>
-                <td><input type="text" id="eventname" placeholder="Event name" class="form-control" name="title"  /></td>
+                <td>Name:</td>
+                <td><input type="text" placeholder="Name" class="form-control" name="name" id="name" readonly /></td>
             </tr>
             <tr>
-                <td>Description:</td>
-                <td><textarea placeholder="Event description" class="editor" id="editor"></textarea>
-</td>
+                <td>Address:</td>
+                <td><textarea placeholder="Address" class="form-control" readonly id="address"></textarea></td>
             </tr>
             <tr>
-                <td>Venue:</td>
-                <td><textarea placeholder="Address" id="venue" class="form-control" ></textarea></td>
+                <td>Phone Number:</td>
+                <td><input type="text" placeholder="phone number" class="form-control" name="phone" id="phone" readonly /></td>
             </tr>
             <tr>
-                <td>Date:</td>
-                <td><input type="text" placeholder="Event date" id="date" class="form-control datepicker" name="date" /></td>
+                <td>Email:</td>
+                <td><input type="text" placeholder="Email" class="form-control datepicker" name="email" id="email" readonly/></td>
             </tr>
             <tr>
-                <td>Time:</td>
-                <td><input type="text"  id="time" class="form-control timepicker" name="time" /></td>
+                <td colspan="2">
+                <button id="edit" class="btn btn-primary">Edit</button>
+                <button id="save" class="btn btn-primary" style="margin-left:15px">Save Changes</button>
             </tr>
-            
-			<tr>
-                <td>Total number of tickets:</td>
-                <td><input type="text" placeholder="Total tickets for the event" id="numticket" class="form-control" name="tickets"  />
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" placeholder="Username" class="form-control" name="username" id="username" readonly /></td>
+            </tr>
+            <tr>
+                <td>Current Password:</td>
+                <td><input type="password" class="form-control" name="opassword" id="opassword" style=""  /></td>
+            </tr>
+            <tr>
+                <td>New Password:</td>
+                <td><input type="password" class="form-control" name="npassword" id="npassword"  /></td>
+            </tr>
+            <tr>
+                <td>Confirm Password:</td>
+                <td><input type="password" class="form-control" name="cpassword" id="cpassword"  /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <button class="btn btn-primary eventbtn">Change Password</button>
                 </td>
             </tr>
             
-            <tr>
-                <td colspan="3" style="text-align:center">
-                	<input type="submit" value="Submit" class="btn btn-primary" style="margin-right: 50px;background-color:#1B7B98" />
-                	<input type="reset" value="Reset" class="btn btn-primary" style="background-color:#1B7B98" />
-                </td>
-            </tr>
         </table>
     </section>
     </center>
@@ -128,11 +155,9 @@
     <script type="text/javascript" src="js/jquery.nav.js"></script>
     <script type="text/javascript" src="js/jquery.timepicker.js"></script>
     <script src="jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    
      <script type="text/javascript">
-    CKEDITOR.replace("editor");
-	// Initiate and customize datepicker
-
+  
     $( ".datepicker" ).datepicker({
 		format: 'MM-DD-YYYY',
         minDate: new Date

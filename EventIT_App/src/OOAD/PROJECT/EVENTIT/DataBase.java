@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -87,13 +89,25 @@ public class DataBase {
 		}
 		return rs;
 	}
-	public boolean saveevent(int eventid, String eventname,String venue, String dates, String descr, String username,int numtick,Connection con)
+	public boolean saveevent(int eventid, String eventname,String venue, String dates, String descr, String username,int numtick,Connection con,String time)
 	{
-		
-		
-		//String query="Insert into Events values ('"+eventid+"','"+username+"','"+eventname+"','"+descr+"','"+venue+"','TO_DATE('"+date+"','DD-MM-YYYY')','"+numtick+"','"+numtick+"')";
-		String query="INSERT INTO `Events` (`EventID`, `User`, `EventName`, `Descr`, `Venue`, `Date`, `TotalTicket`, `Status`) VALUES ('"+eventid+"', '"+username+"', '"+eventname+"', '"+descr+"', '"+venue+"', '"+dates+"', '"+numtick+"', 'P')";
-    	Statement st;
+        System.out.println(time);
+		DateFormat df=new SimpleDateFormat("MM/dd/yyyy");
+		Date date_Value=null;
+		java.sql.Time time_value = null;
+		java.sql.Date finalvalue=null;
+		try {
+			date_Value=df.parse(dates);
+			time_value= new java.sql.Time(df.parse(time).getTime());
+		    finalvalue=new java.sql.Date(date_Value.getTime());
+		    System.out.println(time_value);
+		    System.out.println(finalvalue);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String query="INSERT INTO `Events` (`EventID`, `User`, `EventName`, `Descr`, `Venue`, `Date`, `TotalTicket`, `Status`) VALUES ('"+eventid+"', '"+username+"', '"+eventname+"', '"+descr+"', '"+venue+"','"+finalvalue+"', '"+numtick+"', 'P')";
+		Statement st;
 		try {
 			st = con.createStatement();
 			int rows=st.executeUpdate(query);

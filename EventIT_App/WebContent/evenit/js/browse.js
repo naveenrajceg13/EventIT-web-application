@@ -28,7 +28,7 @@ $(document).ready(function(){
       		    if(result.isvalid){
       		    	
       		    	for (i = 0; i < result.eventid.length; i++) {    
-      		    	$('#browsetable').append("<div class='innerright' id='tag-cloud-widget"+i+"'><input type='hidden' id='event_id' value='"+elementid_array[i]+"' /><a href='javascript:myFunction("+i+");' id='anca' ><h3>"+elementname_array[i]+"</h3><h4>"+elementdate_array[i]+"</h4><h4>"+elementuser_array[i]+"</h4></a></div>")
+      		    	$('#browsetable').append("<div class='innerright' id='tag-cloud-widget"+i+"'><input type='hidden' id='event_id' value='"+elementid_array[i]+"' /><h3>"+elementname_array[i]+"</h3><h4>Hosted by: <a href='#'>Host name</a></h4><h4>"+elementdate_array[i]+"</h4><h4>"+elementuser_array[i]+"</h4><button class='btn btn-primary eventbtn' onclick='javascript:myFunction("+i+");' id='anca' style='float:right'>View Event</button></div></div>");
       		    	}
       		    	
       		   }
