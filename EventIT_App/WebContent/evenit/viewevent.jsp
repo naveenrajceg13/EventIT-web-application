@@ -28,7 +28,7 @@
 	.form-control{
 		width:800px
 		}
-	#dates,#time,#tickets{
+	#dates,#time,#tickets,#category{
 		width:200px
 		}
 	</style>
@@ -80,6 +80,10 @@
             <tr>
                 <td>Description:</td>
                 <td><textarea placeholder="Descriotion" class="form-control" readonly id="descr"></textarea></td>
+            </tr>
+            <tr>
+                <td>Event Category:</td>
+                <td><input type="text" placeholder="Event Category"  id="category" class="form-control" name="category" readonly/></td>
             </tr>
             <tr>
                 <td>Venue:</td>

@@ -30,7 +30,7 @@
 	.form-control{
 		width:800px
 		}
-	#date,#time,#numticket{
+	#date,#time,#numticket,#category{
 		width:200px
 		}
 	</style>
@@ -77,8 +77,21 @@
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><textarea placeholder="Event description" class="editor" id="editor"></textarea>
+                <td><textarea placeholder="Event description" class="form-control" name="description" id="description"></textarea>
 </td>
+            </tr>
+            <tr>
+                <td>Event Category:</td>
+                <td>
+                    <select id="category" name="category" class="form-control">
+                         <option value=""></option>
+                         <option value="category1">Category 1</option>
+                         <option value="category2">Category 2</option>
+                         <option value="category3">Category 3</option>
+                         <option value="category4">Category 4</option>
+                         <option value="category5">Category 5</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Venue:</td>
@@ -127,17 +140,19 @@
     <script type="text/javascript" src="js/jquery.scrollTo.js"></script>
     <script type="text/javascript" src="js/jquery.nav.js"></script>
     <script type="text/javascript" src="js/jquery.timepicker.js"></script>
+    
     <script src="jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
      <script type="text/javascript">
-    CKEDITOR.replace("editor");
+   
 	// Initiate and customize datepicker
 
     $( ".datepicker" ).datepicker({
 		format: 'MM-DD-YYYY',
         minDate: new Date
     });
-	$( ".timepicker" ).timepicker();
+	$( ".timepicker" ).timepicker({
+		    timeFormat: 'H:i'
+	});
 </script>
 </body>
 </html>

@@ -27,19 +27,34 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
 	<link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 	<link rel="stylesheet" href="jquery-ui/jquery-ui.css" />
+    <!-- CSS and JS for rating ---------------- -->
+    <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="js/star-rating.js" type="text/javascript"></script>
+    <script src="js/star-rating_locale_LANG.js"></script>
 	<style>
 .form-control {
 	width:800px
 }
 .innerright {
-	min-height:150px
+	min-height:180px
 }
 .eventbtn {
 	float: right;
 	position: relative;
 	right: 45px;
-	bottom: 10px;
 }
+.row {
+  width: 100%;
+  margin: 0 auto;
+}
+.block {
+  width: 100px;
+  display:inline-block
+}
+.rating-container{
+	width: 260px
+	}
 </style>
 	</head>
 	<!--/head-->
@@ -118,6 +133,15 @@
         minDate: new Date
     });
 	$( ".timepicker" ).timepicker();
+	$(document).ready(function(){
+		$('.rating-container').addClass('block');
+	    $('.nav li').click(function(){
+			$('.nav li').each(function(index, element) {
+                $(this).removeClass('active');    
+            });
+			$(this).addClass('active');
+		});
+	});
 </script>
 </body>
 </html>
