@@ -61,6 +61,35 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 		 }
+		 if(mode.equals("View_Profile"))
+		 {
+			 try {
+				 view_profile(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 if(mode.equals("update_profile"))
+		 {
+			 try {
+				 update_profile(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 if(mode.equals("change_password"))
+		 {
+			 try {
+				 update_pass(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 
+		 
 		
 	}
 
@@ -145,5 +174,103 @@ public class EventIT_UI extends HttpServlet {
 			e.printStackTrace();
 		} 
 	}
+	private void view_profile(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		
+		String username=(getServletContext().getAttribute("Login_Name").toString());
+		try {
+			user=dbconnect.getuser(username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(user!=null){
+		
+			if(user.firstname!=null){
+			map.put("name",user.firstname);}
+			else
+			{
+				map.put("name",username);
+			}
+			map.put("email",user.email );
+			map.put("address",user.address );
+			map.put("phone",user.phone );
+			map.put("isvalid", true);
+			System.out.println(true);
+		}
+		else
+		{
+			map.put("isvalid", false);
+			System.out.println(false);
+		}
+		
+		try{
+			write(response,map);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			} 
+	}
+	private void update_profile(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		boolean result=false,isValid=false;
+		firstname=request.getParameter("name_val");
+		phone=request.getParameter("phone_value");
+		address=request.getParameter("address_value");
+		String username=(getServletContext().getAttribute("Login_Name").toString());
+	    if(user!=null)
+	    {
+	    	
+	    	result=user.updateuser(user.email, user.password, firstname, user.lastname, phone, address);
+	    	
+	    	if(result==true)
+			{
+				isValid=dbconnect.saveuser(user);
+				
+				
+			}
+	    }
+	    map.put("isvalid1", isValid);
+	    try{
+			write(response,map);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	}
+	private void update_pass(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		password=request.getParameter("newpass");
+		String old_password=request.getParameter("oldpass");
+		boolean result=false,isValid=false;
+		if(user!=null)
+	    {
+	    	if(old_password.equals(user.password))
+	    		
+	    		result=user.updateuser(user.email, password, user.firstname, user.lastname, user.phone, user.address);
+	    	
+	    	if(result==true)
+			{
+				isValid=dbconnect.saveuser(user);
+				map.put("result", "password_crt");
+				
+			}
+	    	}
+	    	else
+	    	{
+	    		map.put("result", "password_error");
+	    	}
+		
+		map.put("isvalid2", isValid);
+		try{
+			write(response,map);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	    }
+	   
 
 }

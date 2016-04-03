@@ -54,9 +54,17 @@ public class DataBase {
 	}
 	public boolean saveuser(String emailid,String password,String fname,String lname,String phone,String address,Connection con)
 	{
-		
+		Statement st;
+		String query1="Delete from users where Email='"+emailid+"'";
+		try {
+			st = con.createStatement();
+			int rows=st.executeUpdate(query1);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String query="Insert into users values ('"+emailid+"','"+password+"','"+fname+"','"+lname+"','"+phone+"','"+address+"')";
-    	Statement st;
+    	
 		try {
 			st = con.createStatement();
 			int rows=st.executeUpdate(query);

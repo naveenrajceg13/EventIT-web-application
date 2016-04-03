@@ -12,6 +12,7 @@
 	<link href="css/animate.css" rel="stylesheet">	
 	<link href="css/responsive.css" rel="stylesheet">
     <link href="css/jquery.timepicker.css" rel="stylesheet">
+   
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -23,6 +24,8 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="jquery-ui/jquery-ui.css" />
     <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
+    <SCRIPT src="js/home.js"></SCRIPT>
+    <SCRIPT src="js/profile.js"></SCRIPT>
     <style>
 	.form-control{
 		width:800px
@@ -79,7 +82,7 @@
         </div>                    
     </header>
     <!--/#header--> 
-    <form id="my_profile">
+    
     <center>
     <section id="create" style="min-height:500px;margin-top:95px;position:relative;color:black;width:80%;">	
 		<table class="table table-borderless">
@@ -98,21 +101,18 @@
                 <td>Phone Number:</td>
                 <td><input type="text" placeholder="phone number" class="form-control" name="phone" id="phone" readonly /></td>
             </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" placeholder="Email" class="form-control datepicker" name="email" id="email" readonly/></td>
-            </tr>
+            
             <tr>
                 <td colspan="2">
                 <button id="edit" class="btn btn-primary">Edit</button>
-                <button id="save" class="btn btn-primary" style="margin-left:15px">Save Changes</button>
+                <button id="save" class="btn btn-primary" onclick='javascript:myFunction_profile();' style="margin-left:15px">Save Changes</button>
             </tr>
             <tr>
                 <td colspan="2"></td>
             </tr>
             <tr>
-                <td>Username:</td>
-                <td><input type="text" placeholder="Username" class="form-control" name="username" id="username" readonly /></td>
+                <td>Email:</td>
+                <td><input type="text" placeholder="Email" class="form-control datepicker" name="email" id="oemail" readonly/></td>
             </tr>
             <tr>
                 <td>Current Password:</td>
@@ -128,14 +128,14 @@
             </tr>
             <tr>
                 <td colspan="2">
-                <button class="btn btn-primary eventbtn">Change Password</button>
+                <button class="btn btn-primary eventbtn" onclick='javascript:myFunction_pass();'>Change Password</button>
                 </td>
             </tr>
             
         </table>
     </section>
     </center>
-    </form>
+    
     <!--/#contact-->
 
     <footer id="footer">
