@@ -5,6 +5,8 @@ var elementvenue_arry;
 var elementdescr_arry;
 var elementuser_array;
 var elementticket_array;
+var elementticket_time;
+var elementcategory;
 var success = false; 
 $(document).ready(function(){ 
         
@@ -23,13 +25,16 @@ $(document).ready(function(){
        	    elementdescr_arry=result.descr;
        	    elementuser_array=result.username;
        	    elementticket_array=result.numticket;
-      		
+       	    elementticket_time=result.time;
+   	        elementcategory=result.category;
       	  
       		    if(result.isvalid){
       		    	
       		    	for (i = 0; i < result.eventid.length; i++) {    
-      		    	$('#browsetable').append("<div class='innerright' id='tag-cloud-widget"+i+"'><input type='hidden' id='event_id' value='"+elementid_array[i]+"' /><h3>"+elementname_array[i]+"</h3><h4>Hosted by: <a href='#'>Host name</a></h4><h4>"+elementdate_array[i]+"</h4><h4>"+elementuser_array[i]+"</h4><button class='btn btn-primary eventbtn' onclick='javascript:myFunction("+i+");' id='anca' style='float:right'>View Event</button></div></div>");
+      		    	$('#browsetable').append("<div class='innerright' id='tag-cloud-widget"+i+"'><input type='hidden' id='event_id' value='"+elementid_array[i]+"' /><h3>"+elementname_array[i]+"</h3><h4>Hosted by: <a onClick='javascript:myFunction_host("+i+");'>"+elementuser_array[i]+"</a></h4><h4>"+elementdate_array[i]+"</h4><button class='btn btn-primary eventbtn' onclick='javascript:myFunction("+i+");' id='anca' style='float:right'>View Event</button></div></div>");
+      		    	
       		    	}
+      		    	
       		    	
       		   }
       		   else
@@ -52,6 +57,10 @@ function myFunction(a) {
 		obj.numticket=elementticket_array[a];
 		obj.dates=elementdate_array[a];
 		obj.username=elementuser_array[a];
+		obj.time=elementticket_time[a];
+  		obj.category=elementcategory[a];
+  		
+  		
 		localStorage.setItem("obj1", JSON.stringify(obj));
 		//$("#populated_result").submit();
 		window.open("http://localhost:8080/EventIT_App/evenit/reserveTicket.jsp","_self");

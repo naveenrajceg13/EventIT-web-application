@@ -71,12 +71,16 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 		String username[]=new String[events.size()];
 		String Status[]=new String[events.size()];
 		int numticket[]=new int[events.size()];
+		String Time[]=new String[events.size()];
+		String Category[]=new String[events.size()];
 		//System.out.println("arrays created ");
 		int i;
 		for(i=0;i<events.size();i++)
 		{
 			try {
+				
 				Event e=dbconnect.getevent(events.get(i));
+				if(!e.checkevent())continue;
 				eventid[i]=events.get(i);
 				eventname[i]=e.eventname;
 				descr[i]=e.descr;
@@ -85,6 +89,8 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 				username[i]=e.username;
 				Status[i]=e.status;
 				numticket[i]=e.numticket;
+                 Time[i]=e.time;
+				Category[i]=e.Category;
 				isvalid=true;
 	
 			} catch (SQLException e) {
@@ -99,7 +105,9 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 		map.put("dates", dates);
 		map.put("username", username);
 		map.put("Status", Status);
-		map.put("numticket",numticket);}
+		map.put("numticket",numticket);
+		map.put("time",Time);
+		map.put("category",Category);}
 		//System.out.println("mostly done "+isvalid);
 		map.put("isvalid",isvalid);
 		try {

@@ -20,8 +20,7 @@ import OOAD.PROJECT.EVENTIT.Model.User;
  */
 @WebServlet("/EventIT_UI")
 public class EventIT_UI extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
+
 	public DBcontroller dbconnect;
 	public User user;
 	private String username;
@@ -88,6 +87,8 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 		 }
+		 
+		 
 		 
 		 
 		
@@ -271,6 +272,6 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 	    }
-	   
+	
 
 }

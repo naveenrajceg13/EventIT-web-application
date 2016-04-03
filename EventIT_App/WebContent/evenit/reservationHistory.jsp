@@ -16,7 +16,7 @@
 	<SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
 	<SCRIPT src="js/home.js"></SCRIPT>
     <SCRIPT src="js/reservation.js"></SCRIPT>
-    
+    <SCRIPT src="js/gethostprofile.js"></SCRIPT>
 	<!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -93,8 +93,8 @@
 <section id="browse" style="min-height:500px;margin:0 auto;margin-top:5%;position:relative;color:black;width:80%">
 		<div style=" margin-top: 100px; margin-bottom: 20px;">
         	<ul class="nav navbar-nav navbar-left" style="margin-right:100px !important">
-            <li class="scroll active"><a href="#upcomingevents">Upcoming Events</a></li>
-            <li class="scroll "><a href="#pastevents">Past Events</a></li>            
+            <li class="scroll active"><a href="#upcomingevents" onclick='javascript:myFunction_up();'>Upcoming Events</a></li>
+            <li class="scroll "><a href="#pastevents" onclick='javascript:myFunction_past();'>Past Events</a></li>            
             </ul>
             <input type="text" placeholder="search event" class="form-control" name="searchevent" id="searchevent" style="margin:10px 10px 10px 0px; width:400px; display: inline !important;"/>
             <button class= "btn-search">Search</button>

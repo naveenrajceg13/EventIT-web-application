@@ -9,25 +9,23 @@
 
 
 
-$(document).ready(function(){
-	
-	
-	$('#createevent').submit(function()
+
+	function myFunction_create()
 			{ 
-		
+		          
 		          var eventname1=document.getElementById("eventname").value;  
 		          var descr1=document.getElementById("editor").value;
 		          var venue1=document.getElementById("venue").value;
 		          var date1=document.getElementById("date").value;
 		          var numticket1=document.getElementById("numticket").value;
-		          alert('sasa');
+		         
 		          var time1=document.getElementById("time").value;
-		          alert('asasas');
+		          var cat=document.getElementById("category").value;
 		          $.ajax({
 		        	   url:'../CreateEvent_UI',
 		        	   type:'POST',
 		        	   dateType: 'json',
-		        	   data: {eventname:eventname1,descr:descr1,venue:venue1,date:date1,numticket:numticket1,mode:"register",time:time1 },
+		        	   data: {eventname:eventname1,descr:descr1,venue:venue1,date:date1,numticket:numticket1,mode:"register",time:time1,cate:cat },
 		        	   success: function(result){
 		        		           		    
 		        		    
@@ -46,6 +44,5 @@ $(document).ready(function(){
 		        	  
 		          })
 		          return false;
-			});
+			}
 	
-});

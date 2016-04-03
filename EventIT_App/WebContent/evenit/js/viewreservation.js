@@ -6,7 +6,8 @@
 	 document.getElementById("venue").value=obj.eventvenue;
 	 document.getElementById("dates").value=obj.dates;
 	 document.getElementById("tickets").value=obj.numticket;
-	 
+	 document.getElementById("time").value=obj.time;
+	 document.getElementById("category").value=obj.category;
 	 
 	 $("#register").click(function() {
 			

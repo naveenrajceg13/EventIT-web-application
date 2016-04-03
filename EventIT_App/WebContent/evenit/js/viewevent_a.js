@@ -2,13 +2,15 @@
 
  $(document).ready(function() {
 
+	
 	 var obj=JSON.parse(localStorage.getItem("obj"));
 	 document.getElementById("eventname").value=obj.eventname;
 	 document.getElementById("descr").value=obj.eventdescr;
 	 document.getElementById("venue").value=obj.eventvenue;
 	 document.getElementById("dates").value=obj.dates;
 	 document.getElementById("tickets").value=obj.numticket;
-	 
+	 document.getElementById("time").value=obj.time;
+	 document.getElementById("category").value=obj.category;
 	 $("#approve").click(function() {
 				
 				$.ajax({

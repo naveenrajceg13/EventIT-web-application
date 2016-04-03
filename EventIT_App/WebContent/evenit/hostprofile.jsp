@@ -28,6 +28,9 @@
     <link href="css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
     <script src="js/star-rating.js" type="text/javascript"></script>
     <script src="js/star-rating_locale_LANG.js"></script>
+    <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
+    <SCRIPT src="js/home.js"></SCRIPT>
+    <SCRIPT src="js/hostprofile.js"></SCRIPT>
     <style>
 	.form-control{
 		width:800px
@@ -112,35 +115,11 @@
             </tr>
             
         </table>
-        <table class="table table-bordered" style="width:100%">
+        <table id="hostevents" class="table table-bordered" style="width:100%">
     <tr>
           <th><h3>Hosted Events</h3></th>
-        </tr>
-    <tr>
-          <td>
-            <div class="innerright">
-            <h3>Big Texas Beer Fest 2016 </h3>
-            <h4>Friday, Feb 26th 2016 </h4>
-            <h4>Event host: Niveditha</h4>
-            <button class="btn btn-primary eventbtn">View Event</button>
-          </div>
-            </td>
-        </tr>
-    <tr>
-          <td>
-            <div class="innerright">
-            <h3>Big Texas Beer Fest 2016 </h3>
-            <h4>Friday, Feb 26th 2016 </h4>
-            <h4>Event host: Niveditha</h4>
-            <button class="btn btn-primary eventbtn">View Event</button>
-          </div>
-            </td>
-        </tr>
-    <tr>
-          <td style="text-align:center"><a href="#">
-            more
-            </a></td>
-        </tr>
+    </tr>
+    
   </table>
 
     </section>

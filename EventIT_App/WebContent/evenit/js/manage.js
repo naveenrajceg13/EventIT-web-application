@@ -23,7 +23,9 @@ $(document).ready(function(){
       	    elementdescr_arry=result.descr;
       	    elementuser_array=result.username;
       	    elementticket_array=result.numticket;
-      	  
+      	    elementticket_time=result.time;
+      	    elementcategory=result.category;
+      	    
       		    if(result.isvalid){
       		    	
       		    	
@@ -41,6 +43,8 @@ $(document).ready(function(){
       		    		obj.numticket=elementticket_array[$(this).closest("tr").index()-1];
       		    		obj.dates=elementdate_array[$(this).closest("tr").index()-1];
       		    		obj.username=elementuser_array[$(this).closest("tr").index()-1];
+      		    		obj.time=elementticket_time[$(this).closest("tr").index()-1];
+      		    		obj.category=elementcategory[$(this).closest("tr").index()-1];
       		    		localStorage.setItem("obj", JSON.stringify(obj));
       		    		
       		    		

@@ -33,6 +33,7 @@ public class CreateEvent_UI extends HttpServlet {
 	public String Venue;
 	public String Dates;
 	public String Time;
+	public String Category;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -56,6 +57,7 @@ public class CreateEvent_UI extends HttpServlet {
 		Venue=request.getParameter("venue");
 		Dates=request.getParameter("date");
 		Time=request.getParameter("time");
+		Category=request.getParameter("cate");
 		int numticket=Integer.parseInt(request.getParameter("numticket"));
 		int max_event=1;
 		String username=(getServletContext().getAttribute("Login_Name").toString());
@@ -71,7 +73,7 @@ public class CreateEvent_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 			if(ev!=null){
-				result=ev.createEvent(EventName, Decr, Venue, Dates,username,numticket,"P",Time);
+				result=ev.createEvent(EventName, Decr, Venue, Dates,username,numticket,"P",Time,Category);
 				
 			}
 			if(result==true)

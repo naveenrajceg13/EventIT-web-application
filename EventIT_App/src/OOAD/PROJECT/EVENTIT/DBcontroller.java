@@ -99,7 +99,7 @@ public class DBcontroller extends HttpServlet {
 	 */
 	public boolean saveEvent(Event e) {
 		
-		return db.saveevent(e.eventid, e.eventname, e.venue, e.dates, e.descr, e.username,e.numticket,con,e.time);
+		return db.saveevent(e.eventid, e.eventname, e.venue, e.dates, e.descr, e.username,e.numticket,con,e.time,e.Category);
 		
 		
 	}
@@ -160,8 +160,10 @@ public class DBcontroller extends HttpServlet {
 					 String username=rs.getString("User");
 					 int numticket=rs.getInt("TotalTicket"); 
 					 String status=rs.getString("Status");
+					 String Time=rs.getString("Time");
+					 String Category=rs.getString("Category");
 					 Event ev=new Event();
-					 ev.getEvent(eventid,eventname, descr, venue, dates, username, numticket, status);
+					 ev.getEvent(eventid,eventname, descr, venue, dates, username, numticket, status,Time,Category);
 					 
 					 return ev;
 				}

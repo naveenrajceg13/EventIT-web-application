@@ -92,6 +92,10 @@
                 <td>Time:</td>
                 <td><input type="text"  id="time" class="form-control" name="time" readonly/></td>
             </tr>
+            <tr>
+                <td>Event Category:</td>
+                <td><input type="text" placeholder="Event Category"  id="category" class="form-control" name="category" readonly/></td>
+            </tr>
 			<tr>
                 <td>Number of tickets:</td>
                 <td><input type="text" placeholder="No of tickets purchased" class="form-control" name="tickets" id="tickets" readonly />

@@ -88,6 +88,10 @@
                 <td><input type="text" placeholder="Event date" class="form-control datepicker" id="dates" name="date" readonly/></td>
             </tr>
             <tr>
+                <td>Event Category:</td>
+                <td><input type="text" placeholder="Event Category"  id="category" class="form-control" name="category" readonly/></td>
+            </tr>
+            <tr>
                 <td>Time:</td>
                 <td><input type="text"  id="time" class="form-control" name="time" readonly/></td>
             </tr>

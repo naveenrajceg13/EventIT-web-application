@@ -97,24 +97,28 @@ public class DataBase {
 		}
 		return rs;
 	}
-	public boolean saveevent(int eventid, String eventname,String venue, String dates, String descr, String username,int numtick,Connection con,String time)
+	public boolean saveevent(int eventid, String eventname,String venue, String dates, String descr, String username,int numtick,Connection con,String time,String Category)
 	{
-        System.out.println(time);
+		 SimpleDateFormat format = new SimpleDateFormat("HH:mm"); // 12 hour format
+
+		   
 		DateFormat df=new SimpleDateFormat("MM/dd/yyyy");
 		Date date_Value=null;
 		java.sql.Time time_value = null;
 		java.sql.Date finalvalue=null;
 		try {
 			date_Value=df.parse(dates);
-			time_value= new java.sql.Time(df.parse(time).getTime());
+			 java.util.Date d1 =(java.util.Date)format.parse(time);
+             java.sql.Time ppstime = new java.sql.Time(d1.getTime());
 		    finalvalue=new java.sql.Date(date_Value.getTime());
-		    System.out.println(time_value);
-		    System.out.println(finalvalue);
+		    time_value=ppstime;
+		 
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String query="INSERT INTO `Events` (`EventID`, `User`, `EventName`, `Descr`, `Venue`, `Date`, `TotalTicket`, `Status`) VALUES ('"+eventid+"', '"+username+"', '"+eventname+"', '"+descr+"', '"+venue+"','"+finalvalue+"', '"+numtick+"', 'P')";
+		String query="INSERT INTO `Events` (`EventID`, `User`, `EventName`, `Descr`, `Venue`, `Time`, `Date`, `TotalTicket`, `Status`, `Category`) VALUES ('"+eventid+"', '"+username+"', '"+eventname+"', '"+descr+"', '"+venue+"','"+time_value+"','"+finalvalue+"', '"+numtick+"', 'P','"+Category+"')";
+		
 		Statement st;
 		try {
 			st = con.createStatement();

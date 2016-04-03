@@ -64,7 +64,7 @@
         </div>                    
     </header>
     <!--/#header--> 
-    <form id="createevent">
+    
     <center>
     <section id="create" style="min-height:500px;margin-top:95px;position:relative;color:black;width:80%;">	
 		<table class="table table-bordered">
@@ -77,7 +77,7 @@
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><textarea placeholder="Event description" class="form-control" name="description" id="description"></textarea>
+                <td><textarea placeholder="Event description" class="form-control" name="description" id="editor"></textarea>
 </td>
             </tr>
             <tr>
@@ -85,11 +85,11 @@
                 <td>
                     <select id="category" name="category" class="form-control">
                          <option value=""></option>
-                         <option value="category1">Category 1</option>
-                         <option value="category2">Category 2</option>
-                         <option value="category3">Category 3</option>
-                         <option value="category4">Category 4</option>
-                         <option value="category5">Category 5</option>
+                         <option value="Sport">Sport</option>
+                         <option value="Financial">Financial</option>
+                         <option value="Education">Education</option>
+                         <option value="Coporate">Coporate</option>
+                         <option value="others">others </option>
                     </select>
                 </td>
             </tr>
@@ -114,14 +114,14 @@
             
             <tr>
                 <td colspan="3" style="text-align:center">
-                	<input type="submit" value="Submit" class="btn btn-primary" style="margin-right: 50px;background-color:#1B7B98" />
-                	<input type="reset" value="Reset" class="btn btn-primary" style="background-color:#1B7B98" />
+                <button class="btn btn-primary"  onclick='javascript:myFunction_create();' style="margin-right: 50px;background-color:#1B7B98">Submit</button>
+                <input type="reset" value="Reset" class="btn btn-primary" style="background-color:#1B7B98" />
                 </td>
             </tr>
         </table>
     </section>
     </center>
-    </form>
+   
     <!--/#contact-->
 
     <footer id="footer">

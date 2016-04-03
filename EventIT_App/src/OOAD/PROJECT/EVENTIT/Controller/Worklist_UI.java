@@ -71,6 +71,8 @@ public class Worklist_UI extends HttpServlet {
 		String dates[]=new String[events.size()];
 		String username[]=new String[events.size()];
 		String Status[]=new String[events.size()];
+		String Time[]=new String[events.size()];
+		String Category[]=new String[events.size()];
 		int numticket[]=new int[events.size()];
 		boolean isvalid=false;
 		int i;
@@ -87,6 +89,10 @@ public class Worklist_UI extends HttpServlet {
 				username[i]=e.username;
 				Status[i]=e.status;
 				numticket[i]=e.numticket;
+				Time[i]=e.time;
+				
+				Category[i]=e.Category;
+				
 				isvalid=true;
 	
 			} catch (SQLException e) {
@@ -101,6 +107,8 @@ public class Worklist_UI extends HttpServlet {
 		map.put("dates", dates);
 		map.put("username", username);
 		map.put("Status", Status);
+		map.put("time",Time);
+		map.put("category",Category);
 		map.put("numticket",numticket);
 		map.put("isvalid",isvalid);
 		try {

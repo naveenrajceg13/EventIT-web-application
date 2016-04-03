@@ -75,7 +75,7 @@
     </header>
 <!--/#header-->
 
-<form id='populated_result'>
+
 <section id="browse" style="min-height:500px;margin:0 auto;margin-top:5%;position:relative;color:black;width:80%">
         
       <table class="table table-bordered" id="myTable" style="width:100%">
@@ -86,7 +86,7 @@
     
   </table>
     </section>
-</form>
+
 
 <!--/#contact-->
 
