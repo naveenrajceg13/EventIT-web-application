@@ -14,12 +14,30 @@
     <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <SCRIPT src="js/login_check.js"></SCRIPT>
     <SCRIPT src="js/create_user.js"></SCRIPT>
+    <SCRIPT src="js/fb_check.js"></SCRIPT>
+   <script src="https://apis.google.com/js/client.js?onload=checkAuth"></SCRIPT>
+    <SCRIPT src="js/gmail-check.js"></SCRIPT>
+
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
     <![endif]-->       
    
     <style type="text/css">
+    .buttonsample{
+  background-image:url('images/login-gmail.jpg');
+  width:120px; /* or whatever */
+  height:22px; /* or whatever */
+}
+.buttonsize{
+padding: 0;
+border: none;
+background: none;
+}
+.display_sameline{
+width: 50%;
+display: inline;
+}
 	.btn{
 		background-color:#1B7B98 !important
 		}
@@ -62,7 +80,7 @@
     <!--/#header--> 
     
     <section id="home">	
-    <form id="login_check">
+    
 		<div id="main-slider" class="carousel slide" id="login_display" data-ride="carousel" style="height: 650px;">
 			<div class="carousel-inner">
 				<div>
@@ -72,8 +90,16 @@
 						<h2> Get started now! </h2>
 						<input type="text" id="email" placeholder="Email" class="form-control" style="width:200px" /><br/>
                         <input type="password" id="password" placeholder="Password" class="form-control" style="width:200px" /><br/>
-                        <input type="submit" class="btn btn-primary" style="width:200px" value="Login" /><br/> <br/>
-                        Not a member? <a href="#" data-toggle="modal" data-target="#signup">Sign up</a>
+                        <input type="button" class="btn btn-primary" style="width:200px" value="Login" onclick='javascript:login_fu();'/><br/> <br/>
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+                        <div id="authorize-div-g" class="display_sameline">
+                        <button id="authorize-button" onclick="handleAuthClick(event)" class="buttonsize">
+                        <img src="images/login-gmail.jpg" class="buttonsample"/>
+                        </button>
+                        </div>
+                        <div id="status"> </div>
+                        Not a member? <a href="#" data-toggle="modal" data-target="#signup">Sign up</a>  
 						<div id="displayName" style='color:red'></div>
 						<div id="ResultofRegister" style='color:green'  ></div>
 					</div>
@@ -81,7 +107,7 @@
 						
 			</div>
 		</div> 
-     </form>  	
+       	
     </section>
     
 	<!--/#home-->

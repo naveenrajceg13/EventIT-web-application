@@ -152,35 +152,49 @@ public void displaybrowseevents_user(HttpServletRequest request, HttpServletResp
 	}
 	if(ev!=null){
 	ArrayList<Integer> events=ev.events;
-	//System.out.println("arrays got size is "+events.size());
-	int eventid[]=new int[events.size()];
-	String eventname[]=new String[events.size()];
-	String descr[]=new String[events.size()];
-	String venue[]=new String[events.size()];
-	String dates[]=new String[events.size()];
-	String username[]=new String[events.size()];
-	String Status[]=new String[events.size()];
-	String Time[]=new String[events.size()];
-	String Category[]=new String[events.size()];
-	int numticket[]=new int[events.size()];
-	//System.out.println("arrays created ");
 	int i;
+	
+	int count=0;
+	for(i=0;i<events.size();i++)
+	{
+		try{
+		Event e=dbconnect.getevent(events.get(i));
+		if(e.checkevent()){count=count+1;}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
+	//System.out.println("arrays got size is "+events.size());
+	int eventid[]=new int[count];
+	String eventname[]=new String[count];
+	String descr[]=new String[count];
+	String venue[]=new String[count];
+	String dates[]=new String[count];
+	String username[]=new String[count];
+	String Status[]=new String[count];
+	String Time[]=new String[count];
+	String Category[]=new String[count];
+	int numticket[]=new int[count];
+	//System.out.println("arrays created ");
+	count=0;
 	for(i=0;i<events.size();i++)
 	{
 		try {
 			Event e=dbconnect.getevent(events.get(i));
 			if(!e.checkevent())continue;
-			eventid[i]=events.get(i);
-			eventname[i]=e.eventname;
-			descr[i]=e.descr;
-			venue[i]=e.venue;
-			dates[i]=e.dates;
-			username[i]=e.username;
-			Status[i]=e.status;
-			numticket[i]=e.numticket;
-			Time[i]=e.time;
-			Category[i]=e.Category;
-			isvalid=true;
+			eventid[count]=events.get(i);
+			eventname[count]=e.eventname;
+			descr[count]=e.descr;
+			venue[count]=e.venue;
+			dates[count]=e.dates;
+			username[count]=e.username;
+			Status[count]=e.status;
+			numticket[count]=e.numticket;
+			Time[count]=e.time;
+			Category[count]=e.Category;
+			isvalid=true;count++;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -222,36 +236,49 @@ public void displaybrowseevents_user_past(HttpServletRequest request, HttpServle
 		e.printStackTrace();
 	}
 	if(ev!=null){
+		int i;
 	ArrayList<Integer> events=ev.events;
+	int count=0;
+	for(i=0;i<events.size();i++)
+	{
+		try{
+		Event e=dbconnect.getevent(events.get(i));
+		if(!e.checkevent()){count=count+1;}
+		}
+		catch(Exception e)
+		{
+			
+		}
+	}
 	//System.out.println("arrays got size is "+events.size());
-	int eventid[]=new int[events.size()];
-	String eventname[]=new String[events.size()];
-	String descr[]=new String[events.size()];
-	String venue[]=new String[events.size()];
-	String dates[]=new String[events.size()];
-	String username[]=new String[events.size()];
-	String Status[]=new String[events.size()];
-	String Time[]=new String[events.size()];
-	String Category[]=new String[events.size()];
-	int numticket[]=new int[events.size()];
+	int eventid[]=new int[count];
+	String eventname[]=new String[count];
+	String descr[]=new String[count];
+	String venue[]=new String[count];
+	String dates[]=new String[count];
+	String username[]=new String[count];
+	String Status[]=new String[count];
+	String Time[]=new String[count];
+	String Category[]=new String[count];
+	int numticket[]=new int[count];
 	//System.out.println("arrays created ");
-	int i;
+	count=0;
 	for(i=0;i<events.size();i++)
 	{
 		try {
 			Event e=dbconnect.getevent(events.get(i));
 			if(e.checkevent())continue;
-			eventid[i]=events.get(i);
-			eventname[i]=e.eventname;
-			descr[i]=e.descr;
-			venue[i]=e.venue;
-			dates[i]=e.dates;
-			username[i]=e.username;
-			Status[i]=e.status;
-			numticket[i]=e.numticket;
-			Time[i]=e.time;
-			Category[i]=e.Category;
-			isvalid=true;
+			eventid[count]=events.get(i);
+			eventname[count]=e.eventname;
+			descr[count]=e.descr;
+			venue[count]=e.venue;
+			dates[count]=e.dates;
+			username[count]=e.username;
+			Status[count]=e.status;
+			numticket[count]=e.numticket;
+			Time[count]=e.time;
+			Category[count]=e.Category;
+			isvalid=true;count++;
 
 		} catch (SQLException e) {
 			e.printStackTrace();

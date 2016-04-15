@@ -29,6 +29,8 @@ public class Browse_UI extends HttpServlet {
 	private String fromdate;
 	private String todate;
 	private Event ev;
+	private Worklist wl;
+	
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,11 +47,16 @@ public class Browse_UI extends HttpServlet {
 			
 			displaybrowseevents(request, response, map);
 		}
+		if(mode.equals("browseevents_search"))
+		{
+			
+			displaybrowseevents_search(request, response, map);
+		}
+		
 	}
 public void displaybrowseevents(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
-		
-		Worklist wl=null;
-		Event ev=null;
+	    wl=null;
+	    ev=null;
 		boolean isvalid=false;
 		try {
 			
@@ -61,37 +68,52 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 			e.printStackTrace();
 		}
 		if(ev!=null){
-		ArrayList<Integer> events=ev.events;
-		//System.out.println("arrays got size is "+events.size());
-		int eventid[]=new int[events.size()];
-		String eventname[]=new String[events.size()];
-		String descr[]=new String[events.size()];
-		String venue[]=new String[events.size()];
-		String dates[]=new String[events.size()];
-		String username[]=new String[events.size()];
-		String Status[]=new String[events.size()];
-		int numticket[]=new int[events.size()];
-		String Time[]=new String[events.size()];
-		String Category[]=new String[events.size()];
+			int i;
+			ArrayList<Integer> events=ev.events;
+			int count=0;
+			for(i=0;i<events.size();i++)
+			{
+				try{
+				Event e=dbconnect.getevent(events.get(i));
+				if(e.checkevent()){count=count+1;}
+				}
+				catch(Exception e)
+				{
+					
+				}
+			}
+		
+		System.out.println("arrays got size is "+events.size()+"  cout is "+count);
+			
+		int eventid[]=new int[count];
+		String eventname[]=new String[count];
+		String descr[]=new String[count];
+		String venue[]=new String[count];
+		String dates[]=new String[count];
+		String username[]=new String[count];
+		String Status[]=new String[count];
+		int numticket[]=new int[count];
+		String Time[]=new String[count];
+		String Category[]=new String[count];
 		//System.out.println("arrays created ");
-		int i;
+		count=0;
 		for(i=0;i<events.size();i++)
 		{
 			try {
 				
 				Event e=dbconnect.getevent(events.get(i));
 				if(!e.checkevent())continue;
-				eventid[i]=events.get(i);
-				eventname[i]=e.eventname;
-				descr[i]=e.descr;
-				venue[i]=e.venue;
-				dates[i]=e.dates;
-				username[i]=e.username;
-				Status[i]=e.status;
-				numticket[i]=e.numticket;
-                 Time[i]=e.time;
-				Category[i]=e.Category;
-				isvalid=true;
+				eventid[count]=events.get(i);
+				eventname[count]=e.eventname;
+				descr[count]=e.descr;
+				venue[count]=e.venue;
+				dates[count]=e.dates;
+				username[count]=e.username;
+				Status[count]=e.status;
+				numticket[count]=e.numticket;
+                 Time[count]=e.time;
+				Category[count]=e.Category;
+				isvalid=true;count++;
 	
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -126,6 +148,143 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(new Gson().toJson(map));
 	}
+	
+	
+	public void displaybrowseevents_search(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	    
+		boolean isvalid=false;
+		
+		String fromdate=request.getParameter("fromdate");
+		String todate=request.getParameter("todate");
+		
+		if((fromdate.equals("") && todate.equals("")))
+		{
+			displaybrowseevents(request, response, map);
+			return;
+		}
+		
+		if(true)
+		{
+			//System.out.println("pai");
+		if(ev!=null){
+			int i;
+			ArrayList<Integer> events=ev.events;
+			int count=0;
+			
+			for(i=0;i<events.size();i++)
+			{
+				try{
+				Event e=dbconnect.getevent(events.get(i));
+				if(fromdate.equals(""))
+				{
+					
+				if(e.checkevent(todate,1)){count=count+1;}
+				}
+				else if(todate.equals(""))
+				{
+					
+				if(e.checkevent(fromdate,1)){count=count+1;}	
+				}
+				else if(!(fromdate.equals("") && todate.equals("")))
+				{
+					
+				if(e.checkevent(fromdate,todate)){count=count+1;}
+				}
+				else
+				{
+					count=count+1;
+				}
+				
+				}
+				catch(Exception e)
+				{
+					
+				}
+			}
+		
+		//System.out.println("arrays got size is "+events.size());
+			//System.out.println("count value"+count);
+		int eventid[]=new int[count];
+		String eventname[]=new String[count];
+		String descr[]=new String[count];
+		String venue[]=new String[count];
+		String dates[]=new String[count];
+		String username[]=new String[count];
+		String Status[]=new String[count];
+		int numticket[]=new int[count];
+		String Time[]=new String[count];
+		String Category[]=new String[count];
+		//System.out.println("arrays created ");
+		count=0;
+		for(i=0;i<events.size();i++)
+		{
+			try {
+				
+				Event e=dbconnect.getevent(events.get(i));
+				if(!e.checkevent())continue;
+				eventid[count]=events.get(i);
+				if(fromdate.equals(""))
+				{
+					System.out.println("1");
+				if(!e.checkevent(todate,1)){continue;}
+				}
+				else if(todate.equals(""))
+				{
+					System.out.println("2");
+					System.out.println(e.checkevent(fromdate,1));
+				if(!e.checkevent(fromdate,1)){continue;}	
+				}
+				else if(!todate.equals("")&&!fromdate.equals(""))
+				{
+					System.out.println("3");
+					//System.out.println("asasas"+e.checkevent(fromdate,todate));
+				if(!e.checkevent(fromdate,todate)){continue;}
+				}
+				System.out.println("ssasas "+e.dates);
+				eventname[count]=e.eventname;
+				descr[count]=e.descr;
+				venue[count]=e.venue;
+				dates[count]=e.dates;
+				username[count]=e.username;
+				Status[count]=e.status;
+				numticket[count]=e.numticket;
+                 Time[count]=e.time;
+				Category[count]=e.Category;
+				isvalid=true;count++;
+	
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		map.put("eventid", eventid);
+		map.put("eventname", eventname);
+		map.put("descr", descr);
+		map.put("venue", venue);
+		map.put("dates", dates);
+		map.put("username", username);
+		map.put("Status", Status);
+		map.put("numticket",numticket);
+		map.put("time",Time);
+		map.put("category",Category);}
+		//System.out.println("mostly done "+isvalid);
+		map.put("isvalid",isvalid);
+		map.put("nochange",false);
+		
+	}
+		else
+		{
+			map.put("nochange",false);
+			
+		}
+		try {
+			write(response,map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }
 

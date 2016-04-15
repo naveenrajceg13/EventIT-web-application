@@ -13,7 +13,7 @@
             // Browser globals
             factory(window.jQuery);
         }
-    }
+    } 
 }(function ($) {
     "use strict";
 
@@ -549,13 +549,30 @@
 
     $.fn.rating.Constructor = Rating;
 
+    var doSomething = function() {
+    	var $input = $('input.rating');
+        if ($input.length) {
+            $input.removeClass('rating-loading').addClass('rating-loading').rating();
+            console.log($input.attr('id'));
+            
+        }
+    }
+    var sample=function()
+    {
+    	alert('hi');
+    }
     /**
      * Convert automatically inputs with class 'rating' into Krajee's star rating control.
      */
     $(document).ready(function () {
-        var $input = $('input.rating');
-        if ($input.length) {
-            $input.removeClass('rating-loading').addClass('rating-loading').rating();
-        }
+        doSomething();
+       $(document).unbind( "doSomething" );
+       $(document).bind("doSomething", doSomething());
+      
     });
+    
+    var UJ = function(){
+    	   console.log("hello UJ");
+    }
+    
 }));

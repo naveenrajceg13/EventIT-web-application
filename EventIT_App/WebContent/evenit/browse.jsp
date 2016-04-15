@@ -131,7 +131,7 @@
             </ul>
             <br/>
             <div align="center">
-            <input type="button" value="Search" class="btn btn-primary" style="background-color:#1B7B98;" />
+            <input type="button" value="Search" class="btn btn-primary" onclick='javascript:search_events();' style="background-color:#1B7B98;" id="browser_search" />
             </div>
 	</div>
 	</div>

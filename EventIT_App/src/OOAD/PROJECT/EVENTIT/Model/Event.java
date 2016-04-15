@@ -19,6 +19,7 @@ public class Event {
 	public String time; 
 	public String Category;
 	public ArrayList<Integer> events=new ArrayList<Integer>();
+	public float rate;
 
 	/**
 	 * 
@@ -79,15 +80,12 @@ public class Event {
 		Date date_Value_now=null;
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
-		System.out.println(this.dates);
+		//System.out.println(this.dates);
 		try {
 			date_Value=dateFormat.parse(this.dates);
 			date_Value_now=dateFormat.parse(dateFormat.format(date));
 			finalvalue=new java.sql.Date(date_Value.getTime());
 			finalvalue_now=new java.sql.Date(date_Value_now.getTime());
-			System.out.println("now "+dateFormat.format(date)); 
-			System.out.println("db "+finalvalue);
-			System.out.println(finalvalue.compareTo(finalvalue_now));
 			if(finalvalue.compareTo(finalvalue_now)>0)
 			{
 				return true;
@@ -105,7 +103,81 @@ public class Event {
 		
 		return true;
 	}
-	public Event() {
+public boolean checkevent(String datevalue,int value) {
+		
+	  
+	java.sql.Date finalvalue=null;
+	java.sql.Date finalvalue_now=null;
+	Date date_Value=null;
+	Date date_Value_now=null;
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+	Date date = new Date();
+	try {
+		date_Value=dateFormat.parse(this.dates);
+		date_Value_now=dateFormat1.parse(datevalue);
+		finalvalue=new java.sql.Date(date_Value.getTime());
+		finalvalue_now=new java.sql.Date(date_Value_now.getTime());
+		
+		if(value==1)
+		{
+		if(finalvalue_now.compareTo(finalvalue)<=0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+		}
+		if(value==0)
+		{
+			if(finalvalue.compareTo(finalvalue_now)>=0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+				
+		}
+		
+	} catch (ParseException e) {
+		
+		e.printStackTrace();
+	}
+	
+	
+	return true;
+}
+public boolean checkevent(String fromvalue,String tovalue) {
+	
+	java.sql.Date finalvalue=null;
+	java.sql.Date finalvalue_now=null;
+	Date date_Value=null;
+	Date date_Value_from=null;
+	Date date_Value_to=null;
+	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+	Date date = new Date();
+	try {
+		date_Value=dateFormat.parse(this.dates);
+		date_Value_from=dateFormat1.parse(fromvalue);
+		date_Value_to=dateFormat1.parse(tovalue);
+		finalvalue=new java.sql.Date(date_Value.getTime());
+		finalvalue_now=new java.sql.Date(date_Value_from.getTime());
+		return (((date_Value.after(date_Value_from) && date_Value.before(date_Value_to))||((date_Value.compareTo(date_Value_to)==0))||((date_Value_from.compareTo(date_Value)==0))));
+		
+	} catch (ParseException e) {
+		
+		e.printStackTrace();
+	}
+	
+	
+	return true;
+}
+public Event() {
 		
 		
 		

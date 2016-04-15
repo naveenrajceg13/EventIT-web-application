@@ -1,14 +1,3 @@
-<html>
-  <head>
-  <style type="text/css">
-	.buttonsample{
-  background-image:url('images/login-gmail.jpg');
-  width:100px; /* or whatever */
-  height:35px; /* or whatever */
-}
-		}
-</style>
-    <script type="text/javascript">
       // Your Client ID can be retrieved from your project in the Google
       // Developer Console, https://console.developers.google.com
       var CLIENT_ID = '302920458547-5huq44smkpov0ifffp3hur0muq65m6g4.apps.googleusercontent.com';
@@ -33,7 +22,7 @@
        * @param {Object} authResult Authorization result.
        */
       function handleAuthResult(authResult) {
-        var authorizeDiv = document.getElementById('authorize-div');
+        var authorizeDiv = document.getElementById('authorize-div-g');
         if (authResult && !authResult.error) {
           // Hide auth UI, then load client library.
           authorizeDiv.style.display = 'none';
@@ -41,7 +30,7 @@
         } else {
           // Show auth UI, allowing the user to initiate authorization by
           // clicking authorize button.
-          authorizeDiv.style.display = 'inline';
+        //  authorizeDiv.style.display = 'inline';
         }
       }
 
@@ -76,44 +65,9 @@
           'userId': 'me'
         });
         request.execute(function(resp) {
+        	
         	alert(resp.emailAddress);
         	
         });
       }
-      function listname() {
-    	  alert('hi');
-          var request =  gapi.client.plus.people.get({
-            'userId': 'me'
-          });
-          request.execute(function(resp) {
-          	alert("hi");          
-          });
-        }
       
-
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
-      function appendPre(message) {
-        var pre = document.getElementById('output');
-        var textContent = document.createTextNode(message + '\n');
-        pre.appendChild(textContent);
-      }
-
-    </script>
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
-    </script>
-  </head>
-  <body>
-    <div id="authorize-div">
-      <!--Button for the user to click to initiate auth sequence -->
-      <button id="authorize-button" onclick="handleAuthClick(event)">
-        <img src="images/login-gmail.jpg" class="buttonsample"/>
-      </button>
-    </div>
-    <pre id="output"></pre>
-  </body>
-</html>

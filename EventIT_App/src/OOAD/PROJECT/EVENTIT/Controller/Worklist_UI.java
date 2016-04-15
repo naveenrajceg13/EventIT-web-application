@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 import OOAD.PROJECT.EVENTIT.DBcontroller;
 import OOAD.PROJECT.EVENTIT.Model.Event;
 import OOAD.PROJECT.EVENTIT.Model.Worklist;
+import OOAD.PROJECT.EVENTIT.Model.Worklist_Singleton;
 
 /**
  * Servlet implementation class Worklist_UI
@@ -28,6 +29,7 @@ public class Worklist_UI extends HttpServlet {
 	public DBcontroller dbconnect;
 	private String eventid;
 	private String status;
+	private Worklist_Singleton ws;
 	private Worklist wl;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
