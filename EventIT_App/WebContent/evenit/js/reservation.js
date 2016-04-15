@@ -178,3 +178,34 @@ function myFunction_up() {
 	return false;
 
 }
+function myFunction_searchevents() {
+ 	
+	var search_val=document.getElementById("searchevent_txt").value;
+	$('#registertable').empty();
+	for (i = 0; i < elementid_array.length; i++) {
+		n = elementname_array[i].indexOf(search_val);
+		if(n<0)continue;
+		var divStr = "<div class='innerright' id='tag-cloud-widget"
+			+ i
+			+ "'><input type='hidden' id='event_id' value='"
+			+ elementid_array[i]
+			+ "' /><h3>"
+			+ elementname_array[i]
+			+ "</h3><h4>Hosted by: <a onClick='javascript:myFunction_host("
+			+ i
+			+ ");'>"
+			+ elementuser_array[i]
+			+ "</a></h4><h4>"
+			+ elementdate_array[i]
+			+ "</h4>"
+			+ "<div class='row'>"
+			+ "<span >Rate Event:</span>"
+			+ "<input id='input-7-xs' class='rating rating-loading block' value='1' data-min='0' data-max='5' data-step='0.1' data-size='xs' data-show-clear='false' style='display:inline-block'/>"
+			+ "<button class='btn btn-primary block' id='rate' style='margin-bottom:12px' onClick='javascript:myFunction_2();'>Rate</button>"
+			+ "<input type='button' class='btn btn-primary nominate eventbtn block' style='width:200px' value='View Event' onClick='javascript:myFunction_1("+i+");'/>" 
+			+ "</div>" 
+			+ "</div>";
+		$('#registertable').append(divStr);
+	}
+	
+}

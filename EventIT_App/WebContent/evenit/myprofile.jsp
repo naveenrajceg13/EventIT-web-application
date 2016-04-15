@@ -116,7 +116,7 @@
             </tr>
             <tr>
                 <td>Current Password:</td>
-                <td><input type="password" class="form-control" name="opassword" id="opassword" style=""  /></td>
+                <td><input type="password" class="form-control" name="opassword" id="opassword" style="" /></td>
             </tr>
             <tr>
                 <td>New Password:</td>
@@ -133,6 +133,19 @@
             </tr>
             
         </table>
+        <table id="search_box" class="table table-bordered" style="width:100%">
+    <tr>
+          <th>
+          <div>
+          Hosted Events
+          <input type="text" placeholder="search event" class="form-control" name="searchevent" id="searchevent" style="margin:10px 10px 10px 0px; width:400px; display: inline !important;"/>
+            <button class= "btn-search" onClick='myFunction_searchevents()'>Search</button>
+          </div>
+          </th>
+         </tr>
+     </table>
+     <table id="myevents" class="table table-bordered" style="width:100%">
+     </table>
     </section>
     </center>
     

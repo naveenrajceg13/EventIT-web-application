@@ -318,5 +318,32 @@ public class DataBase {
 		
 		return true;
 	}
+	public boolean cancelEvent(int eventid,String username,Connection con)
+	{
+		
+		
+		//String query="Insert into Events values ('"+eventid+"','"+username+"','"+eventname+"','"+descr+"','"+venue+"','TO_DATE('"+date+"','DD-MM-YYYY')','"+numtick+"','"+numtick+"')";
+		//String query="INSERT INTO `registration` ( `userid`, `eventid`) VALUES ('"+username+"','"+eventid+"')";
+		String query="Delete from Events where User='"+username+"' and Eventid='"+eventid+"'";
+		String query1="Delete from registration where userid='"+username+"' and eventid='"+eventid+"'";
+	//	System.out.println(query);
+    	Statement st;
+		try {
+			st = con.createStatement();
+			int rows=st.executeUpdate(query);
+			int rows1=st.executeUpdate(query1);
+		//	System.out.println("query executed rows"+rows);
+			if(rows==0)
+			{
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			   e.printStackTrace();
+			   return false;
+		}
+		
+		return true;
+	}
 	
 }

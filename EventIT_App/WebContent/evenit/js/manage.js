@@ -58,7 +58,7 @@ $(document).ready(function(){
       		   else
       			   {
       			   alert('No event to mange or role not there, Please check with system admin');   
-      			   window.open("http://localhost:8080/EventIT_App/evenit/index_1.jsp","_self");
+      			   window.open("http://localhost:8080/EventIT_App/evenit/home.jsp","_self");
       			   } 
       	   }
       	  

@@ -18,7 +18,7 @@
       		   else
       			   {
       			      
-      			 window.open("http://localhost:8080/EventIT_App/evenit/index_1.jsp","_self");
+      			 window.open("http://localhost:8080/EventIT_App/evenit/index.jsp","_self");
       			   } 
       	   }
       	  

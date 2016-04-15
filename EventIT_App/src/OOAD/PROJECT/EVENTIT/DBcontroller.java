@@ -236,6 +236,11 @@ public class DBcontroller extends HttpServlet {
 	//	System.out.println("Going to connect DB");
 		return db.cancelTicket(t.eventid,t.userid,con);
 	}
+	public boolean cancelEvent(Event e) {
+		// TODO - implement DBcontroller.getticket
+	//	System.out.println("Going to connect DB");
+		return db.cancelEvent(e.eventid,e.username,con);
+	}
    public boolean changeevent1(Event ev)
    { 
 	   

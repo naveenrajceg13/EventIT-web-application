@@ -96,10 +96,10 @@
             <li class="scroll active"><a href="#upcomingevents" onclick='javascript:myFunction_up();'>Upcoming Events</a></li>
             <li class="scroll "><a href="#pastevents" onclick='javascript:myFunction_past();'>Past Events</a></li>            
             </ul>
-            <form>
+           
   
             <input type="text" placeholder="search event" class="form-control" name="searchevent" id="searchevent_txt" style="margin:10px 10px 10px 0px; width:400px; display: inline !important;"/>
-            <button class= "btn-search">Search</button>
+            <button class= "btn-search" onClick='myFunction_searchevents()'>Search</button>
 
          </div>
       <table id="registertable" class="table table-bordered" style="width:100%; padding-left:200px; padding-right:200px;">
@@ -147,9 +147,7 @@
 		});
 	});
 
-	$( "#searchevent_txt" ).keypress(function( event ) {
-	//	alert(document.getElementById("searchevent_txt").value);
-	});
+	
 
 </script>
 </body>

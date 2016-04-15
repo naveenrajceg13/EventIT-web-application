@@ -62,6 +62,11 @@ public class Ticket_UI extends HttpServlet {
 			
 			displaybrowseevents_user_past(request, response, map);
 		}
+		if(mode.equals("cancelevent"))
+		{
+			
+			cancel_event(request, response, map);
+		}
 		
 		
 	}
@@ -97,6 +102,38 @@ public void cancel(HttpServletRequest request, HttpServletResponse response,Map<
 		}
 		
 	}
+public void cancel_event(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	
+    Ticket ti;
+    Event ev=null;
+    int eventid=Integer.parseInt(request.getParameter("eventid"));
+    String username=(getServletContext().getAttribute("Login_Name").toString());
+    //System.out.println(eventid);
+    boolean isvalid=false;
+    try {
+    	ev=dbconnect.getevent(eventid);
+    	//System.out.println("Ticket Rengerated");
+		//ev=dbconnect.getevent(eventid);
+		if(ev!=null)
+		isvalid=dbconnect.cancelEvent(ev);
+		//System.out.println("ticket save detail "+isvalid);
+		//System.out.println(isvalid);
+		
+		
+	} catch (Exception e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+	//System.out.println(isvalid);
+	map.put("isvalid3", isvalid);
+	try {
+		write(response,map);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
 public void register(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
 		
 	    Ticket ti;
