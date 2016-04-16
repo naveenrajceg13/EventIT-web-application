@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,8 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
+import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
 import OOAD.PROJECT.EVENTIT.Model.User;
+import OOAD.PROJECT.EVENTIT.Model.observer;
 
 /**
  * Servlet implementation class EventIT_UI
@@ -33,6 +36,7 @@ public class EventIT_UI extends HttpServlet {
 	private String phone;
 	private String address;
 	private String firstname;
+	observer ob;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -310,6 +314,7 @@ public class EventIT_UI extends HttpServlet {
 	}
 	private void update_profile(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
+		ob = new EmailObserver();
 		boolean result=false,isValid=false;
 		firstname=request.getParameter("name_val");
 		phone=request.getParameter("phone_value");
@@ -323,7 +328,12 @@ public class EventIT_UI extends HttpServlet {
 	    	if(result==true)
 			{
 				isValid=dbconnect.saveuser(user);
-				
+				try {
+					ob.sendmessage("Profile Updated", username, "Event IT profile Updation");
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
 			}
 	    }
@@ -338,6 +348,7 @@ public class EventIT_UI extends HttpServlet {
 	}
 	private void update_pass(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
+		ob=new EmailObserver();
 		password=request.getParameter("newpass");
 		String old_password=request.getParameter("oldpass");
 		boolean result=false,isValid=false;
@@ -351,7 +362,12 @@ public class EventIT_UI extends HttpServlet {
 			{
 				isValid=dbconnect.saveuser(user);
 				map.put("result", "password_crt");
-				
+				try {
+					ob.sendmessage("Profile Updated", user.email, "Event IT profile Updation");
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 	    	}
 	    	else

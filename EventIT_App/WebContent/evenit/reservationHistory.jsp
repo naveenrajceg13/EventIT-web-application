@@ -55,6 +55,13 @@
 .rating-container{
 	width: 330px
 	}
+.radio_button{
+    width:5%;
+    
+}
+.text_red_color{
+     color:red;
+}
 </style>
 	</head>
 	<!--/head-->

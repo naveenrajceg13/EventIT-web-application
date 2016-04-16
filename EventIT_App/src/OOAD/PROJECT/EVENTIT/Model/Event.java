@@ -19,7 +19,7 @@ public class Event {
 	public String time; 
 	public String Category;
 	public ArrayList<Integer> events=new ArrayList<Integer>();
-	public float rate;
+	public float rating;
 
 	/**
 	 * 
@@ -42,6 +42,7 @@ public class Event {
 		 this.status=Status;
 		 this.time=Time;
 		 this.Category=Category;
+		 this.rating=0;
 		return true;
 		
 	}

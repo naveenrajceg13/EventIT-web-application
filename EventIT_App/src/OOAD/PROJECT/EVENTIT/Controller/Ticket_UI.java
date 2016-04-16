@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
+import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
 import OOAD.PROJECT.EVENTIT.Model.Ticket;
 import OOAD.PROJECT.EVENTIT.Model.Worklist;
+import OOAD.PROJECT.EVENTIT.Model.observer;
 
 /**
  * Servlet implementation class Ticket_UI
@@ -30,6 +33,7 @@ public class Ticket_UI extends HttpServlet {
 	private String eventid;
 	private String userid;
 	public DBcontroller dbconnect;
+	public observer ob;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -38,7 +42,7 @@ public class Ticket_UI extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		ob=new EmailObserver();
 		Map<String,Object> map=new HashMap<String,Object>();
 		dbconnect=new DBcontroller();
 		String mode=request.getParameter("mode");
@@ -84,6 +88,12 @@ public void cancel(HttpServletRequest request, HttpServletResponse response,Map<
 			//ev=dbconnect.getevent(eventid);
 			if(ti!=null)
 			isvalid=dbconnect.cancelticket(ti);
+			try {
+				ob.sendmessage("Ticket Cancelled for event "+eventid, username, "Event IT ticket cancelled");
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//System.out.println("ticket save detail "+isvalid);
 			//System.out.println(isvalid);
 			
@@ -116,6 +126,12 @@ public void cancel_event(HttpServletRequest request, HttpServletResponse respons
 		//ev=dbconnect.getevent(eventid);
 		if(ev!=null)
 		isvalid=dbconnect.cancelEvent(ev);
+		try {
+			ob.sendmessage(" Cancelled event "+eventid, username, "Event IT Event cancelled");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//System.out.println("ticket save detail "+isvalid);
 		//System.out.println(isvalid);
 		
@@ -150,7 +166,12 @@ public void register(HttpServletRequest request, HttpServletResponse response,Ma
 			isvalid=dbconnect.saveticket(ti);
 			//System.out.println("ticket save detail "+isvalid);
 			//System.out.println(isvalid);
-			
+			try {
+				ob.sendmessage("Ticket Registered for event "+eventid, username, "Event IT ticket registered");
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
@@ -298,6 +319,7 @@ public void displaybrowseevents_user_past(HttpServletRequest request, HttpServle
 	String Time[]=new String[count];
 	String Category[]=new String[count];
 	int numticket[]=new int[count];
+	int rated[]=new int[count];
 	//System.out.println("arrays created ");
 	count=0;
 	for(i=0;i<events.size();i++)
@@ -315,6 +337,8 @@ public void displaybrowseevents_user_past(HttpServletRequest request, HttpServle
 			numticket[count]=e.numticket;
 			Time[count]=e.time;
 			Category[count]=e.Category;
+			rated[count]=dbconnect.getratting(e);
+			
 			isvalid=true;count++;
 
 		} catch (SQLException e) {
@@ -331,7 +355,8 @@ public void displaybrowseevents_user_past(HttpServletRequest request, HttpServle
 	map.put("Status", Status);
 	map.put("numticket",numticket);
 	map.put("time",Time);
-	map.put("category",Category);}
+	map.put("category",Category);
+	map.put("rating",rated);}
 	//System.out.println("mostly done "+isvalid);
 	map.put("isvalid1",isvalid);
 	try {

@@ -6,7 +6,7 @@ public class Ticket {
 	public int eventid;
 	public String userid;
 	public String Status;
-
+    public float rating;
 	/**
 	 * 
 	 * @param eventid

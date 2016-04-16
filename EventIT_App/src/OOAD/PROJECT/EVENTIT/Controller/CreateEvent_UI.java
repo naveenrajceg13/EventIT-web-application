@@ -20,9 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
+import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
 import OOAD.PROJECT.EVENTIT.Model.User;
 import OOAD.PROJECT.EVENTIT.Model.Worklist;
+import OOAD.PROJECT.EVENTIT.Model.observer;
 
 /**
  * Servlet implementation class CreateEvent_UI
@@ -39,6 +41,7 @@ public class CreateEvent_UI extends HttpServlet {
 	public String Dates;
 	public String Time;
 	public String Category;
+	observer ob;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -56,7 +59,7 @@ public class CreateEvent_UI extends HttpServlet {
 	{
 		boolean isValid=false;
 		boolean result=false;
-		
+		ob=new EmailObserver();
 		EventName=request.getParameter("eventname");
 		Decr=request.getParameter("descr");
 		Venue=request.getParameter("venue");
@@ -104,7 +107,7 @@ public class CreateEvent_UI extends HttpServlet {
 		}
 		map.put("isValid_2", isValid);
 		try {
-			sendMail();
+			ob.sendmessage("event sent for approval",ev.username, "event under processing");
 		} catch (MessagingException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -123,41 +126,6 @@ public class CreateEvent_UI extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(new Gson().toJson(map));
 	}
-	private void sendMail() throws MessagingException{
-
-	    String host = "smtp.gmail.com";
-	    String password = "Thenewlife1.";
-	    String from = "naveenrajceg13@gmail.com";
-	    String toAddress = "naveenrajp.erode@gmail.com";
-	   
-
-	    Properties properties = System.getProperties();
-	    properties.put("mail.smtp.host", host);
-	    properties.put("mail.smtps.auth", true);
-	    properties.put("mail.smtp.starttls.enable", true);
-	    Session session = Session.getInstance(properties, null);
-
-	    MimeMessage message = new MimeMessage(session);
-	    message.setFrom(new InternetAddress(from));
-	    message.setRecipients(Message.RecipientType.TO, toAddress);
-	    message.setSubject("Anti-Theft Attachment");
-
-	    BodyPart messageBodyPart = new MimeBodyPart();
-	    messageBodyPart.setText("hi first try");
-
-	    Multipart multipart = new MimeMultipart();
-	    multipart.addBodyPart(messageBodyPart);
-	    message.setContent(multipart);
-
-	    try{
-	        Transport transport = session.getTransport("smtps");
-	        transport.connect(host, from, password);
-	        transport.sendMessage(message, message.getAllRecipients());
-	        System.out.println("Mail Sent Successfully");
-	        transport.close();
-	    } catch (SendFailedException sfe){
-	        System.out.println(sfe);
-	    }
-	};
+	  
 
 }

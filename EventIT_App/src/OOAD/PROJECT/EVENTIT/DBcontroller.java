@@ -139,6 +139,15 @@ public class DBcontroller extends HttpServlet {
 		return db.changeworklist(e.eventid,con);
 		
 	}
+	public boolean updaterating(Event e,User u,Ticket t)
+	{
+		return db.updaterating(e.eventid, u.email, t.rating, con);
+	}
+	public int getratting(Event e)
+	{
+		
+		return db.getrating(e.eventid, e.username, con);
+	}
 
 	/**
 	 * 

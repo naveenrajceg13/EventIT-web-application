@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
+import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
 import OOAD.PROJECT.EVENTIT.Model.Worklist;
+import OOAD.PROJECT.EVENTIT.Model.observer;
 
 /**
  * Servlet implementation class approvereject
@@ -28,6 +31,7 @@ public class approvereject extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 	public DBcontroller dbconnect;
+	public observer ob;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -38,6 +42,7 @@ public class approvereject extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ob= new EmailObserver();
 		Map<String,Object> map=new HashMap<String,Object>();
 		dbconnect=new DBcontroller();
 		String mode=request.getParameter("mode");
@@ -78,6 +83,12 @@ public void approves(HttpServletRequest request, HttpServletResponse response,Ma
 			//System.out.println(isvalid);
 			if(isvalid)
 			isvalid=dbconnect.changeevent1(ev);
+			try {
+				ob.sendmessage("Your event approved "+eventid, ev.username, "Event IT event approved");
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		//	System.out.println(isvalid);
 			
 		} catch (SQLException e1) {
@@ -106,6 +117,12 @@ public void reject(HttpServletRequest request, HttpServletResponse response,Map<
 	//System.out.println(isvalid);
 		if(isvalid)
 		isvalid=dbconnect.changeevent1(ev);
+		try {
+			ob.sendmessage("Your event Rejected "+eventid, ev.username, "Event IT event Rejected");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
 		//System.out.println(isvalid);
 		
 	} catch (SQLException e1) {

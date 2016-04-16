@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
 import OOAD.PROJECT.EVENTIT.Model.Event;
+import OOAD.PROJECT.EVENTIT.Model.Ticket;
 import OOAD.PROJECT.EVENTIT.Model.User;
 
 /**
@@ -61,6 +62,15 @@ public class HostProfile_Controller extends HttpServlet {
 		 {
 			 try {
 				 view_host(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 if(mode.equals("rate_event"))
+		 {
+			 try {
+				 rate_events(request, response, map);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -165,6 +175,44 @@ public class HostProfile_Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+	}
+	public void rate_events(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		
+		 String userid=request.getParameter("userid");
+		 String eventid=request.getParameter("eventid");
+		 String rating=request.getParameter("rating");
+		 System.out.println(rating);
+		 Event ev;
+		 Ticket ti;
+		 try {
+			    user=dbconnect.getuser(userid);
+				ev=dbconnect.getevent(Integer.parseInt(eventid));
+				ti=new Ticket(Integer.parseInt(eventid), userid);
+				ti.rating=Float.parseFloat(rating);
+				try{
+				user.rating=user.rating+Float.parseFloat(rating);
+				ev.rating=ev.rating+Float.parseFloat(rating);
+				}
+				catch(Exception e)
+				{
+					user.rating=Float.parseFloat(rating);
+					ev.rating=Float.parseFloat(rating);
+				}
+				
+				dbconnect.updaterating(ev,user,ti);
+				System.out.println(true);
+				map.put("valid", true);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		 try {
+				write(response,map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	

@@ -7,6 +7,7 @@ var elementuser_array;
 var elementticket_array;
 var elementticket_time;
 var elementcategory;
+var elementrating;
 var success = false;
 var run=true;
 $(document).ready(function() {
@@ -62,7 +63,8 @@ function myFunction_past() {
 					elementticket_array = result.numticket;
 					elementticket_time = result.time;
 					elementcategory = result.category;
-
+					elementrating=result.rating;
+                    console.log("rating array",elementrating.length);
 					if (result.isvalid1) {
 
 						$('#registertable').empty();
@@ -82,12 +84,30 @@ function myFunction_past() {
 									+ "</h4>"
 									+ "<div class='row'>"
 									+ "<span >Rate Event:</span>"
-									+ "<input id='input-7-xs' class='rating rating-loading block' value='1' data-min='0' data-max='5' data-step='0.1' data-size='xs' data-show-clear='false' style='display:inline-block'/>"
-									+ "<button class='btn btn-primary block' id='rate' style='margin-bottom:12px' onClick='javascript:myFunction_2();'>Rate</button>"
+									//+ "<input id='input-7-xs' class='rating rating-loading block' value='1' data-min='0' data-max='5' data-step='0.1' data-size='xs' data-show-clear='false' style='display:inline-block'/>"
+									+ "<input type='radio' name='rating_button_"+i+"' value='1'  class='radio_button' onclick='javascript:myFunction_rate("+i+");'/> 1"
+									+ "<input type='radio' name='rating_button_"+i+"' value='2'  class='radio_button' onclick='javascript:myFunction_rate("+i+");'/> 2"
+									+ "<input type='radio' name='rating_button_"+i+"' value='3'  class='radio_button' onclick='javascript:myFunction_rate("+i+");'/> 3"
+									+ "<input type='radio' name='rating_button_"+i+"' value='4'  class='radio_button' onclick='javascript:myFunction_rate("+i+");'/> 4"
+									+ "<input type='radio' name='rating_button_"+i+"' value='5'  class='radio_button' onclick='javascript:myFunction_rate("+i+");'/> 5"
+									//+ "<button class='btn btn-primary block' id='rate' style='margin-bottom:12px' onClick='javascript:myFunction_2();'>Rate</button>"
 									+ "<input type='button' class='btn btn-primary nominate eventbtn block' style='width:200px' value='View Event' onClick='javascript:myFunction_1("+i+");'/>" 
 									+ "</div>" 
 									+ "</div>";
 							$('#registertable').append(divStr);
+							if(elementrating[i]!=0){
+							var value='rating_button_'+i;
+							var rate_value=document.getElementsByName(value);
+							var rated=0;
+							var index=0
+							var ratint=elementrating[i];
+							console.log("rating",elementrating[i]);
+							for (i=0; i<rate_value.length; i++)
+								{
+								rate_value[i].disabled=true;
+								}
+							rate_value[ratint-1].checked=true;
+						}
 						}
 						
 
@@ -98,8 +118,9 @@ function myFunction_past() {
 					},
 				
 				complete: function() {
-
-					$(document).trigger("doSomething");
+					//alert('hi');
+					//$('#input-7-xs').rating('refresh', {disabled: true, showClear: false, showCaption: true});
+					//$(document).trigger("doSomething");
 				}
 
 			});
@@ -151,13 +172,14 @@ function myFunction_up() {
 								+ elementdate_array[i]
 								+ "</h4>"
 								+ "<div class='row'>"
-								+ "<span >Rate Event:</span>"
-								+ "<input id='input-7-xs' class='rating rating-loading block' value='1' data-min='0' data-max='5' data-step='0.1' data-size='xs' data-show-clear='false' style='display:inline-block'/>"
-								+ "<button class='btn btn-primary block' id='rate' style='margin-bottom:12px' onClick='javascript:myFunction_2();'>Rate</button>"
+								//+ "<span >Rate Event:</span>"
+								//+ "<input id='input-7-xs' class='rating rating-loading block' value='1' data-min='0' data-max='5' data-step='0.1' data-size='xs' disabled='true' data-show-clear='false' style='display:inline-block'/>"
+								//+ "<button class='btn btn-primary block' id='rate' style='margin-bottom:12px' onClick='javascript:myFunction_2();'>Rate</button>"
 								+ "<input type='button' class='btn btn-primary nominate eventbtn block' style='width:200px' value='View Event' onClick='javascript:myFunction_1("+i+");'/>" 
 								+ "</div>" 
 								+ "</div>";
 							$('#registertable').append(divStr);
+							//$('#input-7-xs').rating('refresh', {disabled: true, showClear: false, showCaption: true});
 						}
 						
 
@@ -168,7 +190,9 @@ function myFunction_up() {
 					},
 				
 				complete: function() {
-					 $(document).trigger("sample");
+					//alert('hi');
+					
+					
 					// $(document).trigger("doSomething");
 				}
 
@@ -207,5 +231,48 @@ function myFunction_searchevents() {
 			+ "</div>";
 		$('#registertable').append(divStr);
 	}
+	
+}
+
+function myFunction_rate(num){
+	
+	var value='rating_button_'+num;
+	var rate_value=document.getElementsByName(value);
+	var rated=0;
+	var index=0
+	for (i=0; i<rate_value.length; i++)
+		{	
+        if (rate_value[i].checked) {rated=i; index=i}
+		}
+   var event_id=elementid_array[num];
+   var user_id=elementuser_array[num];
+   rated=rate_value[index].value;
+   console.log(rated);
+   $.ajax({
+  	   url : '../HostProfile_Controller',
+  	   type:'POST',
+  	   dateType: 'json',
+  	   data: {mode:"rate_event",eventid:event_id,userid:user_id,rating:rated},
+  	   success: function(result){
+  		    console.log(result);       		    
+  		    
+  		    if(result.valid){
+  		    	
+  		    	for (i=0; i<rate_value.length; i++)
+  				{	rate_value[i].disabled=true;	
+  				}
+  		    	alert('Event Rated Successfully');
+  		    	//window.open("http://localhost:8080/EventIT_App/evenit/manage.jsp","_self");
+  			    
+  		   }
+  		   else
+  			   {
+  			 alert('Event Rating Failed');
+  			     
+  			   } 
+  	   }
+  	  
+    })
+	
 	
 }

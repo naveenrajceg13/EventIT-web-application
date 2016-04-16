@@ -97,6 +97,57 @@ public class DataBase {
 		}
 		return rs;
 	}
+	public int getrating(int eventid,String username,Connection con)
+	{
+		String query="SELECT rateing as eve FROM registration where EventID="+eventid+" and Userid='"+username+"'";
+		ResultSet rs=null;
+		Statement st=null;
+		try{		
+		st=con.createStatement();
+		rs=st.executeQuery(query);
+		while(rs.next())
+		{
+			int rate = rs.getInt(1);
+			
+			return rate;
+			
+		}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+		return 0;
+	}
+	public boolean updaterating(int eventid,String Username,float rating,Connection con)
+	{
+		String query1="Update users set Rating=(Rating+"+rating+")/(total_rating+1),total_rating=total_rating+1 where email='"+Username+"'";
+		String query="Update Events set rating=rating+"+rating+",total_rating=total_rating+1 where EventID="+eventid;
+		//String query1="Update users set Rating=(Rating+"+rating+")/(total_rating),total_rating=total_rating+1 where email='"+Username+"'";
+		String query2="Update registration set rateing=("+rating+")  where EventID="+eventid+" and Userid='"+Username+"'";
+		//	System.out.println("here"+query);
+	    	Statement st;
+	    	try {
+				st = con.createStatement();
+				int rows=st.executeUpdate(query);
+				System.out.println(query1);
+				int rows1=st.executeUpdate(query1);
+				int rows2=st.executeUpdate(query2);
+				 if(rows==0 || rows1==0 || rows==2)
+				{
+					
+					return false;
+				} 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				   e.printStackTrace();
+				   
+				   return false;
+			}
+	    	return true;
+			 
+	}
 	public boolean saveevent(int eventid, String eventname,String venue, String dates, String descr, String username,int numtick,Connection con,String time,String Category)
 	{
 		 SimpleDateFormat format = new SimpleDateFormat("HH:mm"); // 12 hour format
