@@ -49,7 +49,7 @@ public class User {
 	public User() {
 		this.rating=0;
 	}
-	public User(String email1,String password1,String firstname1,String lastname1,String phone1,String address1)
+	public User(String email1,String password1,String firstname1,String lastname1,String phone1,String address1,float rating)
 	{
 		email=email1;
 		password=password1;
@@ -57,7 +57,7 @@ public class User {
 		address=address1;
 		phone=phone1;
 		lastname=lastname1;
-		this.rating=0;
+		this.rating=rating;
 	}
 
 }

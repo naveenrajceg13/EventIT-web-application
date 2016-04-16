@@ -98,6 +98,7 @@ public class HostProfile_Controller extends HttpServlet {
 				map.put("email",user.email );
 				map.put("address",user.address );
 				map.put("phone",user.phone );
+				map.put("rating",user.rating);
 				try {
 					
 					ev=dbconnect.getallevents_user(userid);

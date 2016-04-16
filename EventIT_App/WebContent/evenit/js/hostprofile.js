@@ -13,4 +13,8 @@ $(document).ready(function() {
 	    		$('#hostevents').append("<tr><td><a href='#'><div class='innerright'><input type='hidden' value='"+obj.eventid[i]+"' /><h3> "+obj.eventname[i]+"</h3><h4>"+obj.descr[i]+"</h4><h4><I>Event Venue</I>		:"+obj.venue[i]+"</h4><h4><I>Event Date</I>		:"+obj.dates[i]+"</h4><h4><I>No of Tickers</I>		:"+obj.numticket[i]+"</h4></div><</a></td></tr>");
 	    	}  
 		 }
+	 $('#input-7-xs').on('rating.change', function(event, value, caption) {
+		    console.log(value);
+		    console.log(caption);
+		});
 });

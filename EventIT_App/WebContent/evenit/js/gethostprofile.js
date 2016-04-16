@@ -26,6 +26,7 @@ function  myFunction_host(a){
    			    obj.events=result.events;
    			    obj.dates=result.dates;
 			    obj.username=result.username;
+			    obj.rating=result.rating;
 	   			localStorage.setItem("obj3", JSON.stringify(obj));
 	   			
 	   			

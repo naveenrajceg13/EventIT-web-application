@@ -55,7 +55,8 @@ public class DBcontroller extends HttpServlet {
 					 String lastname=rs.getString("LastName");
 					 String phone=rs.getString("Phone");
 					 String address=rs.getString("Address");
-					 User user=new User(email,password,firstname,lastname,phone,address);
+					 float rating=rs.getInt("Rating");
+					 User user=new User(email,password,firstname,lastname,phone,address,rating);
 					 return user;
 				}
 		}
