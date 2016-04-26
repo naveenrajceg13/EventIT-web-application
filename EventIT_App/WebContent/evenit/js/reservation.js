@@ -95,7 +95,6 @@ function myFunction_past() {
 									+ "</div>" 
 									+ "</div>";
 							$('#registertable').append(divStr);
-							//$("#input-7-xs").rating();
 							if(elementrating[i]!=0){
 							var value='rating_button_'+i;
 							var rate_value=document.getElementsByName(value);

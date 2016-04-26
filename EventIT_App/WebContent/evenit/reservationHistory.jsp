@@ -14,7 +14,9 @@
 	<link href="css/jquery.timepicker.css" rel="stylesheet">
 	<link href="css/sidemenu.css" rel="stylesheet">
 	<SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
-
+	<SCRIPT src="js/home.js"></SCRIPT>
+    <SCRIPT src="js/reservation.js"></SCRIPT>
+    <SCRIPT src="js/gethostprofile.js"></SCRIPT>
 	<!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -30,9 +32,6 @@
     <link href="css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
     <script src="js/star-rating.js" type="text/javascript"></script>
     <script src="js/star-rating_locale_LANG.js"></script>
-    <SCRIPT src="js/home.js"></SCRIPT>
-    <SCRIPT src="js/reservation.js"></SCRIPT>
-    <SCRIPT src="js/gethostprofile.js"></SCRIPT>
 	<style>
 .form-control {
 	width:800px
@@ -129,7 +128,6 @@
     </footer>
 <!--/#footer--> 
 
-<script type="text/javascript" src="js/jquery.js"></script> 
 <script type="text/javascript" src="js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="js/smoothscroll.js"></script> 
 <script type="text/javascript" src="js/jquery.parallax.js"></script> 
@@ -137,7 +135,6 @@
 <script type="text/javascript" src="js/jquery.nav.js"></script> 
 <script type="text/javascript" src="js/jquery.timepicker.js"></script> 
 <script src="jquery-ui/jquery-ui.js"></script> 
-<script type="text/javascript" src="ckeditor/ckeditor.js"></script> 
 <script type="text/javascript">
 
     $( ".datepicker" ).datepicker({

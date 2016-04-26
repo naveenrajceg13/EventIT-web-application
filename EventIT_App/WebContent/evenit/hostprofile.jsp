@@ -26,9 +26,10 @@
     <!-- CSS and JS for rating ---------------- -->
     <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
     <link href="css/theme-krajee-svg.css" media="all" rel="stylesheet" type="text/css" />
+	<SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <script src="js/star-rating.js" type="text/javascript"></script>
     <script src="js/star-rating_locale_LANG.js"></script>
-    <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
+    
     <SCRIPT src="js/home.js"></SCRIPT>
     <SCRIPT src="js/hostprofile.js"></SCRIPT>
     <style>
@@ -99,7 +100,7 @@
             </tr>
             <tr>
                 <td colspan="2"><span style="font-size:38px">Host Name</span>
-                <span style="float:right;">Rating: <input id="input-7-xs" class="rating rating-loading" value="1" data-min="0" data-max="5" data-step="0.1" data-size="xs" data-show-clear="false" style="display:inline-block"/></span></td>
+                <span style="float:right;">Rating: <input id="input-7-xs" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" data-size="xs" data-show-clear="false" readonly="false" style="display:inline-block"/></span></td>
             </tr>
             <tr>
                 <td>Address:</td>
@@ -136,7 +137,6 @@
     </footer>
     <!--/#footer-->
   
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/smoothscroll.js"></script>
     <script type="text/javascript" src="js/jquery.parallax.js"></script>
@@ -152,6 +152,7 @@
         minDate: new Date
     });
 	$( ".timepicker" ).timepicker();
+	
 </script>
 </body>
 </html>
