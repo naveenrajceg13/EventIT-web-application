@@ -17,6 +17,7 @@
 	<SCRIPT src="js/home.js"></SCRIPT>
     <SCRIPT src="js/reservation.js"></SCRIPT>
     <SCRIPT src="js/gethostprofile.js"></SCRIPT>
+    <SCRIPT src="js/logout.js"></SCRIPT>
 	<!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -87,8 +88,8 @@
 		       <li class="scroll"><a href="event.jsp">Create Event</a></li>
                <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
 		       <li class="scroll active"><a href="reservationHistory.jsp">Reservation History</a></li>
-		       <li class="scroll"><a href="#">My Profile</a></li>
-               <li class="scroll"><a href="#">Logout</a></li> 
+		       <li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
+               <li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
            </div>           
         </div>
       </div>

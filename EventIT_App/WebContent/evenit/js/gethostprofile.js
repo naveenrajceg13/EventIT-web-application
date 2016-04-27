@@ -9,7 +9,7 @@ function  myFunction_host(a){
 	   	   data: {mode:"hostprofile",user:username},
 	   	   success: function(result){
 	   		   
-	   		   
+	   		//alert(result.isvalid)   
 	   		if(result.isvalid){
 	   			var obj = {};
 	   			obj.emailid=result.email;
@@ -27,9 +27,10 @@ function  myFunction_host(a){
    			    obj.dates=result.dates;
 			    obj.username=result.username;
 			    obj.rating=result.rating;
+			    obj.firstname=result.firstname;
+			    console.log("name",obj.firstname);
+			    //alert(obj.firstname);
 	   			localStorage.setItem("obj3", JSON.stringify(obj));
-	   			
-	   			
 	   			window.open("http://localhost:8080/EventIT_App/evenit/hostprofile.jsp","_self");
 	   		}
 	   		else{

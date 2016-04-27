@@ -29,7 +29,7 @@
 	<SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <script src="js/star-rating.js" type="text/javascript"></script>
     <script src="js/star-rating_locale_LANG.js"></script>
-    
+    <SCRIPT src="js/logout.js"></SCRIPT>
     <SCRIPT src="js/home.js"></SCRIPT>
     <SCRIPT src="js/hostprofile.js"></SCRIPT>
     <style>
@@ -83,7 +83,7 @@
                             <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
 		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
 		                    <li class="scroll "><a href="myprofile.jsp">My Profile</a></li>
-               				<li class="scroll"><a href="#">Logout</a></li>
+               				<li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
                        	</div>
 		            </div>
 		        </div>
@@ -91,15 +91,16 @@
         </div>                    
     </header>
     <!--/#header--> 
-    <form id="host_profile">
+    
     <center>
+   
     <section id="create" style="min-height:500px;margin-top:95px;position:relative;color:black;width:80%;">	
 		<table class="table table-borderless">
             <tr>
                 <td colspan="2" style="text-align:center"><h3><strong>Host Profile</strong></h3></td>
             </tr>
             <tr>
-                <td colspan="2"><span style="font-size:38px">Host Name</span>
+                <td colspan="2"><div style="font-size:38px" id="host_name"></div>
                 <span style="float:right;">Rating: <input id="input-7-xs" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" data-size="xs" data-show-clear="false" readonly="false" style="display:inline-block"/></span></td>
             </tr>
             <tr>
@@ -116,6 +117,11 @@
             </tr>
             
         </table>
+        <table id="hostevents1" class="table table-bordered" style="width:100%">
+    <tr>
+          <th><h3>Hosted Events</h3></th>
+    </tr>
+    </table>
         <table id="hostevents" class="table table-bordered" style="width:100%">
     <tr>
           <th><h3>Hosted Events</h3></th>
@@ -125,7 +131,7 @@
 
     </section>
     </center>
-    </form>
+    
     <!--/#contact-->
 
     <footer id="footer">

@@ -99,6 +99,7 @@ public class HostProfile_Controller extends HttpServlet {
 				map.put("address",user.address );
 				map.put("phone",user.phone );
 				map.put("rating",user.rating);
+				map.put("firstname", user.firstname);
 				try {
 					
 					ev=dbconnect.getallevents_user(userid);
@@ -122,6 +123,7 @@ public class HostProfile_Controller extends HttpServlet {
 				int numticket[]=new int[events.size()];
 				//System.out.println("arrays created ");
 				int i;
+				
 				for(i=0;i<events.size();i++)
 				{
 					try {
@@ -167,7 +169,7 @@ public class HostProfile_Controller extends HttpServlet {
 			else
 			{
 				map.put("isvalid", isvalid);
-				System.out.println(false);
+				System.out.println("fasass");
 			}
 			try {
 				write(response,map);

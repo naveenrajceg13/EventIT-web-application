@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -30,9 +31,13 @@ public class checklogin extends HttpServlet {
 		// TODO Auto-generated method stub
 		Map<String,Object> map=new HashMap<String,Object>();
 		boolean loged_in=false;
+		HttpSession session = request.getSession(true);
 		try
 		{
-		String str=(getServletContext().getAttribute("Login_Name").toString());
+		//String str=(getServletContext().getAttribute("Login_Name").toString());
+		//System.out.println("servlet"+str);
+		String str=request.getSession().getAttribute("Login_Name").toString();
+		//System.out.println("session"+str1);
 		if(str!=null)
 		{
 			if(str.length()>=1)

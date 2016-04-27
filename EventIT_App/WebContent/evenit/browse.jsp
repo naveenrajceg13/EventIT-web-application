@@ -12,7 +12,7 @@
 	<link href="css/animate.css" rel="stylesheet">	
 	<link href="css/responsive.css" rel="stylesheet">
     <link href="css/jquery.timepicker.css" rel="stylesheet">
-    
+    <SCRIPT src="js/logout.js"></SCRIPT>
     <link href="css/sidemenu.css" rel="stylesheet">
     <SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <SCRIPT src="js/browse.js"></SCRIPT>
@@ -66,8 +66,8 @@
                             <li class="scroll"><a href="event.jsp">Create Event</a></li>
                             <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
 		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
-		                    <li class="scroll"><a href="#">My Profile</a></li>
-                            <li class="scroll"><a href="#">Logout</a></li>
+		                    <li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
+                            <li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
 		                </div>
 		            </div>
 		        </div>
@@ -91,11 +91,12 @@
                   <a href="#"> Categories</a>
                 </li>
                 <ul class="sub-menu " id="cat">
-                    <li style="padding-left:5px">Category 1</li>
-                    <li style="padding-left:5px">Category 2</li>
-                    <li style="padding-left:5px">Category 3</li>
-                    <li style="padding-left:5px">Category 4</li>
-                    <li style="padding-left:5px">Category 5</li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=1>Sport</input></li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=2>Financial</input></li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=3>Education</input></li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=4>Corporate</input></li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=5>Others</input></li>
+                    <li style="padding-left:5px"><input type="radio" name="one2" value=6 checked>All</input></li>
                 </ul>
 
 

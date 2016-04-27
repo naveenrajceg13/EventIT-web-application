@@ -43,7 +43,7 @@ $(document).ready(function(){
     					
       				 $('#myevents').empty();
       			    	for (i = 0; i < result.eventid.length; i++) {    
-      			    		$('#myevents').append("<tr><td><a onClick='javascript:myFunction_myevents("+i+");'><div class='innerright'><input type='hidden' value='"+result.eventid[i]+"' /><h3> "+result.eventname[i]+"</h3><h4>"+result.descr[i]+"</h4><h4><I>Event Venue</I>		:"+result.venue[i]+"</h4><h4><I>Event Date</I>		:"+result.dates[i]+"</h4><h4><I>No of Tickers</I>		:"+result.numticket[i]+"</h4></div><</a></td></tr>");
+      			    		$('#myevents').append("<tr><td><a onClick='javascript:myFunction_myevents("+i+");'><div class='innerright'><input type='hidden' value='"+result.eventid[i]+"' /><h3> "+result.eventname[i]+"</h3><h4>"+result.descr[i]+"</h4><h4><I>Event Venue</I>		:"+result.venue[i]+"</h4><h4><I>Event Date</I>		:"+result.dates[i]+"</h4><h4><I>No of Tickers</I>		:"+result.numticket[i]+"</h4></div></a></td></tr>");
       			    	}  
       				 }
       		   }

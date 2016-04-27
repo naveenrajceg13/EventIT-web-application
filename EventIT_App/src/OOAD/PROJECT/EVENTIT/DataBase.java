@@ -308,8 +308,25 @@ public class DataBase {
 		ResultSet rs=null;
 		Statement st=null;
 		try{		
-		String query="SELECT * FROM registration where Userid='"+username+"'";
-	//	System.out.println(query);
+		String query="SELECT * FROM events where User='"+username+"'";
+	    //System.out.println(query);
+		st=con.createStatement();
+		rs=st.executeQuery(query);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		return rs;
+	}
+	public ResultSet getallevents_registed_user(String username,Connection con)
+	{
+		ResultSet rs=null;
+		Statement st=null;
+		try{		
+		String query="SELECT * FROM registration where userid='"+username+"'";
+	    //System.out.println(query);
 		st=con.createStatement();
 		rs=st.executeQuery(query);
 		}
@@ -351,7 +368,7 @@ public class DataBase {
 		//String query="Insert into Events values ('"+eventid+"','"+username+"','"+eventname+"','"+descr+"','"+venue+"','TO_DATE('"+date+"','DD-MM-YYYY')','"+numtick+"','"+numtick+"')";
 		//String query="INSERT INTO `registration` ( `userid`, `eventid`) VALUES ('"+username+"','"+eventid+"')";
 		String query="Delete from registration where userid='"+username+"' and eventid='"+eventid+"'";
-	//	System.out.println(query);
+	 	System.out.println(query);
     	Statement st;
 		try {
 			st = con.createStatement();

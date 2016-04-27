@@ -13,7 +13,8 @@
 	<link href="css/responsive.css" rel="stylesheet">
 	<SCRIPT src="js/jquery-1.12.1.js"></SCRIPT>
     <SCRIPT src="js/home.js"></SCRIPT>
-    
+    <SCRIPT src="js/logout.js"></SCRIPT>
+    <SCRIPT src="js/username.js"></SCRIPT>
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
 	    <script src="js/respond.min.js"></script>
@@ -71,7 +72,7 @@
                             <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
 		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
                             <li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
-                            <li class="scroll"><a href="#">Logout</a></li>
+                            <li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
                      	</div>
 		   
 		               
@@ -141,7 +142,7 @@
     		</td>
             <td style="width:40%;">
             	<div align="center" style="height:300px;color: black; padding-top:100px;">
-    				<label style=" font-size: 100px; color:black">Welcome User!</label>
+    				<label style=" font-size: 100px; color:black" id="welcome_msg">Welcome</label>
     			</div>
    			</td>
     	</tr>

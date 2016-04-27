@@ -156,9 +156,11 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 		
 		String fromdate=request.getParameter("fromdate");
 		String todate=request.getParameter("todate");
-		
+		String cat_index=request.getParameter("category");
+		int category_index=Integer.parseInt(cat_index);
 		if((fromdate.equals("") && todate.equals("")))
 		{
+			map.put("cat_index", category_index);
 			displaybrowseevents(request, response, map);
 			return;
 		}
@@ -266,7 +268,8 @@ public void displaybrowseevents(HttpServletRequest request, HttpServletResponse 
 		map.put("Status", Status);
 		map.put("numticket",numticket);
 		map.put("time",Time);
-		map.put("category",Category);}
+		map.put("category",Category);
+		map.put("cat_index", category_index);}
 		//System.out.println("mostly done "+isvalid);
 		map.put("isvalid",isvalid);
 		map.put("nochange",false);

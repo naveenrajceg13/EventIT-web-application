@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -75,11 +76,11 @@ public class Ticket_UI extends HttpServlet {
 		
 	}
 public void cancel(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
-		
+	    HttpSession session = request.getSession(true);
 	    Ticket ti;
 	    Event ev=null;
 	    int eventid=Integer.parseInt(request.getParameter("eventid"));
-	    String username=(getServletContext().getAttribute("Login_Name").toString());
+	    String username=(session.getAttribute("Login_Name").toString());
 	    //System.out.println(eventid);
 	    boolean isvalid=false;
 	    try {
@@ -88,7 +89,9 @@ public void cancel(HttpServletRequest request, HttpServletResponse response,Map<
 			//ev=dbconnect.getevent(eventid);
 			if(ti!=null)
 			isvalid=dbconnect.cancelticket(ti);
+			//System.out.println(isvalid);
 			try {
+				if(isvalid)
 				ob.sendmessage("Ticket Cancelled for event "+eventid, username, "Event IT ticket cancelled");
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block
@@ -128,6 +131,7 @@ public void cancel_event(HttpServletRequest request, HttpServletResponse respons
 		isvalid=dbconnect.cancelEvent(ev);
 		try {
 			ob.sendmessage(" Cancelled event "+eventid, username, "Event IT Event cancelled");
+			ev=null;
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,11 +155,11 @@ public void cancel_event(HttpServletRequest request, HttpServletResponse respons
 	
 }
 public void register(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
-		
+	    HttpSession session = request.getSession(true);
 	    Ticket ti;
 	    Event ev=null;
 	    int eventid=Integer.parseInt(request.getParameter("eventid"));
-	    String username=(getServletContext().getAttribute("Login_Name").toString());
+	    String username=(session.getAttribute("Login_Name").toString());
 	   // System.out.println(eventid);
 	    boolean isvalid=false;
 	    try {
@@ -195,14 +199,14 @@ private void write(HttpServletResponse response, Map<String, Object> map)throws 
 }
 
 public void displaybrowseevents_user(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
-	
+	HttpSession session = request.getSession(true);
 	Worklist wl=null;
 	Event ev=null;
 	boolean isvalid=false;
-	String username1=(getServletContext().getAttribute("Login_Name").toString());
+	String username1=(session.getAttribute("Login_Name").toString());
 	try {
 		
-		ev=dbconnect.getallevents_user(username1);
+		ev=dbconnect.getallevents_registed_user(username1);
 		//System.out.println("event got");
 	} 
 	catch (Exception e) {
@@ -287,7 +291,7 @@ public void displaybrowseevents_user_past(HttpServletRequest request, HttpServle
 	String username1=(getServletContext().getAttribute("Login_Name").toString());
 	try {
 		
-		ev=dbconnect.getallevents_user(username1);
+		ev=dbconnect.getallevents_registed_user(username1);
 		//System.out.println("event got");
 	} 
 	catch (Exception e) {

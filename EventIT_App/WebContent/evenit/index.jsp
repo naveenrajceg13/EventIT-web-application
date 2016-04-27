@@ -25,9 +25,9 @@
    
     <style type="text/css">
     .buttonsample{
-  background-image:url('images/login-gmail.jpg');
-  width:120px; /* or whatever */
-  height:22px; /* or whatever */
+  /* background-image:url('images/login-gmail.jpg'); 
+  width:100px; 
+  height:21px; */
 }
 .buttonsize{
 padding: 0;
@@ -93,10 +93,11 @@ display: inline;
                         <input type="button" class="btn btn-primary" style="width:200px" value="Login" onclick='javascript:login_fu();'/><br/> <br/>
                         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
                         </fb:login-button>
-                        <div id="authorize-div-g" class="display_sameline">
-                        <button id="authorize-button" onclick="handleAuthClick(event)" class="buttonsize">
-                        <img src="images/login-gmail.jpg" class="buttonsample"/>
-                        </button>
+                        <div id="authorize-div-g">
+                        <!-- <button type="button" id="authorize-button" onclick="handleAuthClick(event)" class="buttonsample">
+                        <img type="button" src="images/login-gmail.jpg" class="buttonsample" onclick="handleAuthClick(event)"/> 
+                        </button>-->
+                         <a href="#" onclick="handleAuthClick(event)" style='color:orange'>Google Login</a>
                         </div>
                         <div id="status"> </div>
                         Not a member? <a href="#" data-toggle="modal" data-target="#signup">Sign up</a>  

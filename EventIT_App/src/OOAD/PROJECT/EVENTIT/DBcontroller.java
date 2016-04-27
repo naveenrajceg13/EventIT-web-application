@@ -47,8 +47,9 @@ public class DBcontroller extends HttpServlet {
 		ResultSet rs=db.getuser(userid, con);
 		if(rs!=null)
 		{
-			   
+			
 			   while(rs.next()){
+				    
 					 String email = rs.getString("email");
 					 String password=rs.getString("password");
 					 String firstname=rs.getString("FirstName");
@@ -57,6 +58,7 @@ public class DBcontroller extends HttpServlet {
 					 String address=rs.getString("Address");
 					 float rating=rs.getInt("Rating");
 					 User user=new User(email,password,firstname,lastname,phone,address,rating);
+					 
 					 return user;
 				}
 		}
@@ -212,8 +214,30 @@ public class DBcontroller extends HttpServlet {
 		Event ev=new Event();
 		if(rs!=null)
 		{
-			   
+			
 			   while(rs.next()){
+				  
+					int eventid = rs.getInt("eventID"); 
+					ev.events.add(eventid);
+					
+				}
+		}
+		else
+		{
+			
+		}
+		
+		return ev;
+	}
+public Event getallevents_registed_user(String username) throws SQLException {
+		
+		ResultSet rs=db.getallevents_registed_user(username,con);
+		Event ev=new Event();
+		if(rs!=null)
+		{
+			
+			   while(rs.next()){
+				  
 					int eventid = rs.getInt("eventID"); 
 					ev.events.add(eventid);
 					
@@ -228,7 +252,7 @@ public class DBcontroller extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * getallevents_registed_user
 	 * @param t
 	 */
 	public boolean saveticket(Ticket t) {

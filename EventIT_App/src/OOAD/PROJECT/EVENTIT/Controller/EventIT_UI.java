@@ -12,12 +12,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import OOAD.PROJECT.EVENTIT.DBcontroller;
 import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
+import OOAD.PROJECT.EVENTIT.Model.FB_login;
+import OOAD.PROJECT.EVENTIT.Model.Gmail_Login;
+import OOAD.PROJECT.EVENTIT.Model.Login;
 import OOAD.PROJECT.EVENTIT.Model.User;
 import OOAD.PROJECT.EVENTIT.Model.observer;
 
@@ -37,6 +41,7 @@ public class EventIT_UI extends HttpServlet {
 	private String address;
 	private String firstname;
 	observer ob;
+	HttpSession session;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -46,6 +51,7 @@ public class EventIT_UI extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		session = request.getSession(true);
 		Map<String,Object> map=new HashMap<String,Object>();
 		dbconnect=new DBcontroller();
 		 String mode=request.getParameter("mode");
@@ -53,6 +59,24 @@ public class EventIT_UI extends HttpServlet {
 		 {
 			 try {
 				login(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 if(mode.equals("fb_login"))
+		 {
+			 try {
+				 fb_login(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+		 if(mode.equals("gmail_login"))
+		 {
+			 try {
+				 gmail_login(request, response, map);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -94,7 +118,15 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 		 }
-		 
+		 if(mode.equals("logout"))
+		 {
+			 try {
+				 logout(request, response, map);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 		 
 		 
 		 
@@ -114,6 +146,7 @@ public class EventIT_UI extends HttpServlet {
 		boolean result=false;
 		username=request.getParameter("username");
 		password=request.getParameter("password");
+		HttpSession session = request.getSession(true);
 		if((username!=null && username.trim().length()!=0) && (password!=null && password.trim().length()!=0))
 		{
 			
@@ -125,11 +158,104 @@ public class EventIT_UI extends HttpServlet {
 			}
 			if(user!=null){
 				result=user.Checklogin(username, password);
+				
 			}
 			if(result==true)
 			{
-				getServletContext().setAttribute("Login_Name", username);
+				//getServletContext().setAttribute("Login_Name", username);
+				session.setAttribute("Login_Name", username);
 				request.setAttribute("Login_Name",username);
+				System.out.println(user.firstname);
+				 map.put("Firstname", user.firstname);
+				isValid=true;
+			}
+		}
+		map.put("isValid", isValid);
+		try{
+		write(response,map);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		} 
+	}
+	private void fb_login(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		Login login=new FB_login();
+		boolean isValid=false;
+		boolean result=false;
+		String firstname;
+		username=request.getParameter("username");
+		firstname=request.getParameter("firstname");
+		HttpSession session = request.getSession(true);
+		boolean checkuser=false;
+		if((username!=null && username.trim().length()!=0))
+		{
+			
+			
+			try {
+				checkuser=login.checkuser(username);
+	            result=checkuser;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(checkuser!=true){
+				result=login.createuser(username, firstname);
+				
+			}
+			if(result==true)
+			{
+				//getServletContext().setAttribute("Login_Name", username);
+				session.setAttribute("Login_Name", username);
+				session.setAttribute("firstname", firstname);
+				request.setAttribute("Login_Name",username);
+				System.out.println(user.firstname);
+				 map.put("Firstname", user.firstname);
+				isValid=true;
+			}
+		}
+		map.put("isValid", isValid);
+		try{
+		write(response,map);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		} 
+	}
+	private void gmail_login(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		
+		Login login=new Gmail_Login();
+		boolean isValid=false;
+		boolean result=false;
+		String firstname;
+		username=request.getParameter("username");
+		firstname=request.getParameter("firstname");
+		HttpSession session = request.getSession(true);
+		boolean checkuser=false;
+		if((username!=null && username.trim().length()!=0))
+		{
+			
+			
+			try {
+				checkuser=login.checkuser(username);
+	            result=checkuser;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(checkuser!=true){
+				result=login.createuser(username, firstname);
+				
+			}
+			if(result==true)
+			{
+				//getServletContext().setAttribute("Login_Name", username);
+				session.setAttribute("Login_Name", username);
+				session.setAttribute("firstname", firstname);
+				request.setAttribute("Login_Name",username);
+				System.out.println(user.firstname);
+				 map.put("Firstname", user.firstname);
 				isValid=true;
 			}
 		}
@@ -185,7 +311,7 @@ public class EventIT_UI extends HttpServlet {
 	private void view_profile(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
 		
-		String username=(getServletContext().getAttribute("Login_Name").toString());
+		String username=(session.getAttribute("Login_Name").toString());
 		try {
 			user=dbconnect.getuser(username);
 		} catch (Exception e) {
@@ -222,7 +348,8 @@ public class EventIT_UI extends HttpServlet {
 	}
 	private Map<String, Object> view_host(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
-		     String userid=(getServletContext().getAttribute("Login_Name").toString());
+		     
+		     String userid=(session.getAttribute("Login_Name").toString());
       	     Event ev=null;
       	     boolean isvalid=false;
 	     try {
@@ -319,7 +446,7 @@ public class EventIT_UI extends HttpServlet {
 		firstname=request.getParameter("name_val");
 		phone=request.getParameter("phone_value");
 		address=request.getParameter("address_value");
-		String username=(getServletContext().getAttribute("Login_Name").toString());
+		String username=(session.getAttribute("Login_Name").toString());
 	    if(user!=null)
 	    {
 	    	
@@ -384,6 +511,21 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 	    }
+	private void logout(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
+	{
+		
+		 
+		 session.removeAttribute("Login_Name");
+		 map.put("isvalid", true);
+		 System.out.println("logged out");
+		try{
+			write(response,map);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+	}
 	
 
 }

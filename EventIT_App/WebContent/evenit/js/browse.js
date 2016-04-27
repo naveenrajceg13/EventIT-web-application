@@ -72,11 +72,20 @@ function search_events()
 	                  
 	               var from_date=document.getElementById("fromdate").value;
 	               var to_date=document.getElementById("todate").value;
+	              
+	               var rate_value=document.getElementsByName("one2");
+	           	   var rated=-1;
+	           	   var index=-1;
+	           	for (i=0; i<rate_value.length; i++)
+	           		{	
+	                   if (rate_value[i].checked) {rated=i; index=i}
+	           		}
+	           	   
 	               $.ajax({
 	              	   url:'../Browse_UI',
 	              	   type:'POST',
 	              	   dateType: 'json',
-	              	   data: {mode:"browseevents_search",fromdate:from_date,todate:to_date },
+	              	   data: {mode:"browseevents_search",fromdate:from_date,todate:to_date,category:index },
 	              	   success: function(result){
 	              		 
 	              		 if(!result.nochange){
@@ -92,7 +101,15 @@ function search_events()
 	              	   	        elementcategory=result.category;
 	              	   	        console.log(result.eventid.length);
 	              	   	   $('#browsetable').empty();
-	              		    	for (i = 0; i < result.eventid.length; i++) {    
+	              		    	for (i = 0; i < result.eventid.length; i++) {
+	              		    		if(result.cat_index<5){
+	
+	              		    			if(result.cat_index==0){if(elementcategory[i]!='Sport')continue;}
+	              		    			if(result.cat_index==1){if(elementcategory[i]!='Financial')continue;}
+	              		    			if(result.cat_index==2){if(elementcategory[i]!='Education')continue;}
+	              		    			if(result.cat_index==3){if(elementcategory[i]!='Coporate')continue;}
+	              		    			if(result.cat_index==4){if(elementcategory[i]!='others')continue;}
+	              		    		}
 	              		    	$('#browsetable').append("<div class='innerright' id='tag-cloud-widget"+i+"'><input type='hidden' id='event_id' value='"+elementid_array[i]+"' /><h3>"+elementname_array[i]+"</h3><h4>Hosted by: <a onClick='javascript:myFunction_host("+i+");'>"+elementuser_array[i]+"</a></h4><h4>"+elementdate_array[i]+"</h4><button class='btn btn-primary eventbtn' onclick='javascript:myFunction("+i+");' id='anca' style='float:right'>View Event</button></div></div>");
 	              		    	}
 	              		    	

@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -57,6 +58,7 @@ public class CreateEvent_UI extends HttpServlet {
 	}
 	private void register(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
+		HttpSession session = request.getSession(true);
 		boolean isValid=false;
 		boolean result=false;
 		ob=new EmailObserver();
@@ -68,7 +70,7 @@ public class CreateEvent_UI extends HttpServlet {
 		Category=request.getParameter("cate");
 		int numticket=Integer.parseInt(request.getParameter("numticket"));
 		int max_event=1;
-		String username=(getServletContext().getAttribute("Login_Name").toString());
+		String username=(session.getAttribute("Login_Name").toString());
 		if(true)
 		{
 			try {
