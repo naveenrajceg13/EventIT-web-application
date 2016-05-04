@@ -32,17 +32,21 @@ public class checklogin extends HttpServlet {
 		Map<String,Object> map=new HashMap<String,Object>();
 		boolean loged_in=false;
 		HttpSession session = request.getSession(true);
+		String str;
+		boolean admin=false;
 		try
 		{
 		//String str=(getServletContext().getAttribute("Login_Name").toString());
 		//System.out.println("servlet"+str);
-		String str=request.getSession().getAttribute("Login_Name").toString();
+			str=request.getSession().getAttribute("Login_Name").toString();
 		//System.out.println("session"+str1);
 		if(str!=null)
 		{
 			if(str.length()>=1)
 			{
 				loged_in=true;
+				if(str.equals("admin"))
+					admin=true;
 			}
 		}
 		}
@@ -51,6 +55,7 @@ public class checklogin extends HttpServlet {
 			e.printStackTrace();
 		}
 		map.put("logedin", loged_in);
+		map.put("admin", admin);
 		try {
 			write(response,map);
 		} catch (Exception e) {

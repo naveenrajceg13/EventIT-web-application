@@ -8,7 +8,8 @@ var name='';
     	    		  function(response) {
     	    	email=response.email;
     	    	name=response.name;
-    	    	testAPI(email,name)
+    	    	testAPI(email,name);
+    	    	
     	    		  }
     	    		);
     	});
@@ -25,7 +26,7 @@ var name='';
   window.fbAsyncInit = function() {
 	  FB.init({
 	    appId      : '617268818432268',
-	    cookie     : true,  
+	    cookie     : false,  
 	    xfbml      : true,  
 	    version    : 'v2.5' 
 	  });
@@ -47,6 +48,7 @@ var name='';
 	 
 	  function testAPI(email,name)
 	  {
+		  
 	  	var username_value=email;
 	      var Firstname=name;
 	      
@@ -70,12 +72,13 @@ var name='';
 	    		   else
 	    			   {
 	    			 
-	    			      $('#displayName').html('Login Un Successful');
+	    			      //$('#displayName').html('Login Un Successful');
 	        			    
-	        			  $('#displayName').slideDown(500);
+	        			  //$('#displayName').slideDown(500);
 	    			   } 
 	    	   }
 	    	  
 	      })
 	      return false;
 	  	}
+	  

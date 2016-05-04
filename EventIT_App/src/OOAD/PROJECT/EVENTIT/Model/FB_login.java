@@ -7,11 +7,13 @@ public class FB_login implements Login {
 	User user;
 	DBcontroller dbconnect;
 	public FB_login() {
+		dbconnect=new DBcontroller();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean checkuser(String Userid) {
+		
 		// TODO Auto-generated method stub
 		try {
 			user=dbconnect.getuser(Userid);
@@ -45,8 +47,9 @@ public class FB_login implements Login {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			if(user!=null){
-				result=user.updateuser(username, password, firstname, lastname, phone, address);
+				result=user.updateuser(username, password, firstname, lastname, phone, address,0,0);
 				
 			}
 			if(result==true)

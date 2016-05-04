@@ -16,7 +16,7 @@
     <SCRIPT src="js/create_user.js"></SCRIPT>
     <SCRIPT src="js/fb_check.js"></SCRIPT>
    <script src="https://apis.google.com/js/client.js?onload=checkAuth"></SCRIPT>
-    <SCRIPT src="js/gmail-check.js"></SCRIPT>
+
 
     <!--[if lt IE 9]>
 	    <script src="js/html5shiv.js"></script>
@@ -97,7 +97,6 @@ display: inline;
                         <!-- <button type="button" id="authorize-button" onclick="handleAuthClick(event)" class="buttonsample">
                         <img type="button" src="images/login-gmail.jpg" class="buttonsample" onclick="handleAuthClick(event)"/> 
                         </button>-->
-                         <a href="#" onclick="handleAuthClick(event)" style='color:orange'>Google Login</a>
                         </div>
                         <div id="status"> </div>
                         Not a member? <a href="#" data-toggle="modal" data-target="#signup">Sign up</a>  

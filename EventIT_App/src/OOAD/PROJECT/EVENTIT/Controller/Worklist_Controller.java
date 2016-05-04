@@ -23,7 +23,7 @@ import OOAD.PROJECT.EVENTIT.Model.Worklist_Singleton;
  * Servlet implementation class Worklist_UI
  */
 @WebServlet("/Worklist_UI")
-public class Worklist_UI extends HttpServlet {
+public class Worklist_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	public DBcontroller dbconnect;
@@ -78,11 +78,15 @@ public class Worklist_UI extends HttpServlet {
 		int numticket[]=new int[events.size()];
 		boolean isvalid=false;
 		int i;
+		System.out.println("size "+events.size());
 		for(i=0;i<events.size();i++)
 		{
 			try {
 				wl.checkworklist(events.get(i));
+				System.out.println(i);
 				Event e=dbconnect.getevent(events.get(i));
+				if(e!=null)
+				{
 				eventid[i]=events.get(i);
 				eventname[i]=e.eventname;
 				descr[i]=e.descr;
@@ -92,10 +96,10 @@ public class Worklist_UI extends HttpServlet {
 				Status[i]=e.status;
 				numticket[i]=e.numticket;
 				Time[i]=e.time;
-				
-				Category[i]=e.Category;
-				
 				isvalid=true;
+				Category[i]=e.Category;
+				}
+				
 	
 			} catch (SQLException e) {
 				e.printStackTrace();

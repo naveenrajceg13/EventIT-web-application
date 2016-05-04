@@ -22,7 +22,7 @@ import OOAD.PROJECT.EVENTIT.Model.Worklist;
  * Servlet implementation class Browse_UI
  */
 @WebServlet("/Browse_UI")
-public class Browse_UI extends HttpServlet {
+public class Browse_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public DBcontroller dbconnect;

@@ -70,7 +70,7 @@ public class HostProfile_Controller extends HttpServlet {
 		 if(mode.equals("rate_event"))
 		 {
 			 try {
-				 rate_events(request, response, map);
+				 rate_events1(request, response, map);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -179,6 +179,7 @@ public class HostProfile_Controller extends HttpServlet {
 			}
 			
 	}
+	
 	public void rate_events(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map)
 	{
 		
@@ -217,7 +218,6 @@ public class HostProfile_Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
-	
 	
 
 	}

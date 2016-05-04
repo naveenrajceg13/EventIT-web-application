@@ -7,11 +7,12 @@ public class Worklist {
 
 	
 	public ArrayList<Integer> events = new ArrayList<Integer>();
-	
+	static Worklist w;
 	/**
 	 * 
 	 * @param e
 	 */
+	
 	public void updateWorklist(Event e) {
 		// TODO - implement Worklist.updateWorklist
 		
@@ -31,14 +32,25 @@ public class Worklist {
 	 * 
 	 * @param e
 	 */
+	public static Worklist getinstance() {
+		
+        if(w==null){
+        	w=new Worklist();
+        	return w;
+        }
+        else
+        {
+        	return w;
+        }
+	
+}
 	public boolean removefromworklist(int e) {
 		// TODO - implement Worklist.removefromworklist
 		throw new UnsupportedOperationException();
 	}
 
 	public Worklist() {
-		// TODO - implement Worklist.Worklist
-		
+		w=null;
 	}
 
 }

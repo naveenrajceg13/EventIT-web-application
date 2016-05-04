@@ -11,32 +11,25 @@
       		   
       		   
       		    if(result.logedin){
-      		    	     if(result.admin)
-      		    	    	 {
-      		    	    	
-      		    	    	$( "#onem" ).show();
-      		    	    	$( "#oneh" ).hide();
-      		    	    	$( "#oneb" ).hide();
-      		    	    	$( "#onec" ).hide();
-      		    	    	$( "#oner" ).hide();
-      		    	    	$( "#onep" ).hide();
-      		    	    	 }
-      		    	     else
-      		    	    	 {
-      		    	    	 
+      		    	    
       		    	    	$( "#onem" ).hide();
       		    	    	$( "#oneh" ).show();
       		    	    	$( "#oneb" ).show();
       		    	    	$( "#onec" ).show();
       		    	    	$( "#oner" ).show();
-      		    	    	$( "#onep" ).show();
-      		    	    	 }
+      		    	    	$( "#tonep" ).show();
+      		    	    	
       			    
       		   }
       		   else
       			   {
-      			       
-      			 window.open("http://localhost:8080/EventIT_App/evenit/index.jsp","_self");
+      			    $( "#onem" ).hide();
+	    	    	$( "#oneh" ).hide();
+	    	    	$( "#oneb" ).show();
+	    	    	$( "#onec" ).hide();
+	    	    	$( "#oner" ).hide();
+	    	    	$( "#tonep" ).hide(); 
+      			 
       			   } 
       	   }
       	  

@@ -183,5 +183,17 @@ public Event() {
 		
 		
 	}
+public boolean changeDetails(String descr,String date,String time,String venue)
+{
+	this.descr=descr;
+	this.dates=date;
+	this.time=time;
+	this.venue=venue;
+	return true;
+}
+public String gethostid()
+{
+	return this.username;
+}
 
 }

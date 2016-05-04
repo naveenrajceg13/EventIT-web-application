@@ -25,7 +25,7 @@
         var authorizeDiv = document.getElementById('authorize-div-g');
         if (authResult && !authResult.error) {
           // Hide auth UI, then load client library.
-          authorizeDiv.style.display = 'none';
+          
           loadGmailApi();
         } else {
           // Show auth UI, allowing the user to initiate authorization by
@@ -67,6 +67,8 @@
         request.execute(function(resp) {
         	
         	alert(resp.emailAddress);
+        	if(resp.emailAddress!=null)
+        	authorizeDiv.style.display = 'none';
         	
         });
       }

@@ -33,6 +33,13 @@
 	#date,#time,#numticket,#category{
 		width:200px
 		}
+	.inline_display{
+	display: inline-flex;
+	}
+	.navbar-right .active a {
+    background-color: transparent;
+    color: #fb130b !important;
+    }
 	</style>
    
 </head><!--/head-->
@@ -48,17 +55,16 @@
 		                	<img class="img-responsive" src="images/eventlogo.png" alt="logo">
 		                </div>                    
 		            </div>
-		            <div class="collapse navbar-collapse">
-                    	<div class="nav navbar-nav navbar-right"> 
-		                    <li class="scroll"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll"><a href="browse.jsp">Browse Events</a></li>                         
-		                    <li class="scroll active"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll"><a href="reservationHistory.jsp">Reservation History</a></li>
-		   					<li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
-                            <li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
-		               	</div>
-		            </div>
+		            <div class="nav navbar-nav navbar-right"> 
+		                    <div class="inline_display" id="oneh"><li class="scroll "><a href="home.jsp">Home</a></li></div>
+		                    <div class="inline_display" id="oneb"><li class="scroll "><a href="browse.jsp">Browse Events</a></li>  </div>                       
+		                    <div class="inline_display" id="onec"><li class="scroll active"><a href="event.jsp">Create Event</a></li></div>
+                            <div class="inline_display" id="onem"><li class="scroll "><a href="manage.jsp">Manage Worklist</a></li></div>
+		                    <div class="inline_display" id="oner"><li class="scroll "><a href="reservationHistory.jsp">Reservation History</a></li></div>
+                            <div class="inline_display" id="onep"><li class="scroll "><a href="myprofile.jsp">My Profile</a></li></div>
+                            <div class="inline_display" id="onel"><li class="scroll "><a href="#" onclick="javascript:logout()">Logout</a></li></div>
+                     	</div>
+
 		        </div>
 	        </div>
         </div>                    

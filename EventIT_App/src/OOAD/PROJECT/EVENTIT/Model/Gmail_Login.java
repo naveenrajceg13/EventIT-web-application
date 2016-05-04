@@ -7,11 +7,13 @@ public class Gmail_Login implements Login {
 	User user;
 	DBcontroller dbconnect;
 	public Gmail_Login() {
+		dbconnect=new DBcontroller();
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public boolean checkuser(String Userid) {
+		
 		// TODO Auto-generated method stub
 		try {
 			user=dbconnect.getuser(Userid);
@@ -46,7 +48,7 @@ public class Gmail_Login implements Login {
 				e.printStackTrace();
 			}
 			if(user!=null){
-				result=user.updateuser(username, password, firstname, lastname, phone, address);
+				result=user.updateuser(username, password, firstname, lastname, phone, address,0,0);
 				
 			}
 			if(result==true)
@@ -58,4 +60,5 @@ public class Gmail_Login implements Login {
 		}
 		return isValid;
 	}
+
 }

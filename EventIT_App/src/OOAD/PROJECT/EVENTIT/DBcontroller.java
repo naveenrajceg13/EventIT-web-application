@@ -23,13 +23,13 @@ import OOAD.PROJECT.EVENTIT.Model.Worklist;
 public class DBcontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
+    public static DBcontroller dbcon;
 	private int DBUSERNAME;
 	private int DBPASSWORD;
     private DataBase db;
 	Connection con;
 	public DBcontroller() {
-		
+		dbcon=null;
 		 db=new DataBase();
 		try{
 			con=db.connectdb("root", "");		
@@ -41,7 +41,14 @@ public class DBcontroller extends HttpServlet {
 	
 		
 	}
-	
+	public static DBcontroller getInstance()
+	{
+		if(dbcon==null)
+		{
+			dbcon=new DBcontroller();
+		}
+		return dbcon;
+	}
 	public User getuser(String userid)throws Exception {
 		
 		ResultSet rs=db.getuser(userid, con);
@@ -57,7 +64,8 @@ public class DBcontroller extends HttpServlet {
 					 String phone=rs.getString("Phone");
 					 String address=rs.getString("Address");
 					 float rating=rs.getInt("Rating");
-					 User user=new User(email,password,firstname,lastname,phone,address,rating);
+					 int total_rating=rs.getInt("total_rating");
+					 User user=new User(email,password,firstname,lastname,phone,address,rating,total_rating);
 					 
 					 return user;
 				}
@@ -92,7 +100,7 @@ public class DBcontroller extends HttpServlet {
 	 */
 	public boolean saveuser(User u) {
 		
-		return db.saveuser(u.email, u.password, u.firstname, u.lastname, u.phone, u.address,con);
+		return db.saveuser(u.email, u.password, u.firstname, u.lastname, u.phone, u.address,u.rating,u.total_rating,con);
 		
 	}
 
@@ -115,7 +123,8 @@ public class DBcontroller extends HttpServlet {
 		{
 			   
 			   while(rs.next()){
-					int eventid = rs.getInt("eventID"); 
+					int eventid = rs.getInt("eventID");
+					System.out.println("event-id"+eventid);
 					wl.events.add(eventid);
 					
 				}

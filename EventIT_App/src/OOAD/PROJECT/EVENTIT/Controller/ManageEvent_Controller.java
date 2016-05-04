@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import OOAD.PROJECT.EVENTIT.DBcontroller;
 import OOAD.PROJECT.EVENTIT.Model.EmailObserver;
 import OOAD.PROJECT.EVENTIT.Model.Event;
+import OOAD.PROJECT.EVENTIT.Model.Ticket;
 import OOAD.PROJECT.EVENTIT.Model.User;
 import OOAD.PROJECT.EVENTIT.Model.Worklist;
 import OOAD.PROJECT.EVENTIT.Model.observer;
@@ -31,7 +32,7 @@ import OOAD.PROJECT.EVENTIT.Model.observer;
  * Servlet implementation class CreateEvent_UI
  */
 @WebServlet("/CreateEvent_UI")
-public class CreateEvent_UI extends HttpServlet {
+public class ManageEvent_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
      
 	public DBcontroller dbconnect;
@@ -128,6 +129,70 @@ public class CreateEvent_UI extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(new Gson().toJson(map));
 	}
-	  
+	public void update_event(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		System.out.println("isvalid");
+		int eventid=Integer.parseInt(request.getParameter("eventid"));
+		String descr=request.getParameter("decr");
+		String date=request.getParameter("date");
+		String time=request.getParameter("time");
+		String venue=request.getParameter("venue");
+		boolean isvalid=false;
+		try {
+			Event ev=dbconnect.getevent(eventid);
+			ev.changeDetails(descr,ev.dates,ev.time,venue);
+			dbconnect.cancelEvent(ev);
+			isvalid=dbconnect.saveEvent(ev);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		map.put("isvalid3", isvalid);
+		try {
+			write(response,map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void cancel_event(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+		
+	    Ticket ti;
+	    Event ev=null;
+	    int eventid=Integer.parseInt(request.getParameter("eventid"));
+	    String username=(getServletContext().getAttribute("Login_Name").toString());
+	    //System.out.println(eventid);
+	    boolean isvalid=false;
+	    try {
+	    	ev=dbconnect.getevent(eventid);
+	    	//System.out.println("Ticket Rengerated");
+			//ev=dbconnect.getevent(eventid);
+			if(ev!=null)
+			ev.changestatus("canceled");
+			isvalid=dbconnect.cancelEvent(ev);
+			try {
+				ob.sendmessage(" Cancelled event "+eventid, username, "Event IT Event cancelled");
+				ev=null;
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//System.out.println("ticket save detail "+isvalid);
+			//System.out.println(isvalid);
+			
+			
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		//System.out.println(isvalid);
+		map.put("isvalid3", isvalid);
+		try {
+			write(response,map);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}	  
 
 }

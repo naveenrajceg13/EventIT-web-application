@@ -38,4 +38,34 @@
 	                    
 	     
 			});
+	 
+	 $("#update_event").click(function() {
+			
+		 $.ajax({
+	      	   url : '../Ticket_UI',
+	      	   type:'POST',
+	      	   dateType: 'json',
+	      	   data: {mode:"update_event_1",eventid:obj.eventid,decr:obj.eventdescr,data:obj.dates,time:obj.time,venue:obj.category},
+	      	   success: function(result){
+	      		           		    
+	      		    
+	      		    if(result.isvalid3){
+	      		    	
+	      		    	
+	      		    	alert('Event Canceled Successfully');
+	      		    	
+	      		    	window.open("http://localhost:8080/EventIT_App/evenit/reservationHistory.jsp","_self");
+	      			    
+	      		   }
+	      		   else
+	      			   {
+	      			 alert('Event Updated Successfully');
+	      			     
+	      			   } 
+	      	   }
+	      	  
+	        })
+	                    
+	     
+			});
  });

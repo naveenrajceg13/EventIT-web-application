@@ -29,7 +29,7 @@ import OOAD.PROJECT.EVENTIT.Model.observer;
  * Servlet implementation class EventIT_UI
  */
 @WebServlet("/EventIT_UI")
-public class EventIT_UI extends HttpServlet {
+public class EventIT_Controller extends HttpServlet {
 
 	public DBcontroller dbconnect;
 	public User user;
@@ -147,6 +147,7 @@ public class EventIT_UI extends HttpServlet {
 		username=request.getParameter("username");
 		password=request.getParameter("password");
 		HttpSession session = request.getSession(true);
+		System.out.println("hi hello");
 		if((username!=null && username.trim().length()!=0) && (password!=null && password.trim().length()!=0))
 		{
 			
@@ -164,6 +165,8 @@ public class EventIT_UI extends HttpServlet {
 			{
 				//getServletContext().setAttribute("Login_Name", username);
 				session.setAttribute("Login_Name", username);
+				session.setAttribute("firstname", user.firstname);
+				session.setAttribute("lmode", "proxy");
 				request.setAttribute("Login_Name",username);
 				System.out.println(user.firstname);
 				 map.put("Firstname", user.firstname);
@@ -209,8 +212,9 @@ public class EventIT_UI extends HttpServlet {
 				session.setAttribute("Login_Name", username);
 				session.setAttribute("firstname", firstname);
 				request.setAttribute("Login_Name",username);
-				System.out.println(user.firstname);
-				 map.put("Firstname", user.firstname);
+				session.setAttribute("lmode", "fb");
+				//System.out.println(user.firstname);
+				 map.put("Firstname", firstname);
 				isValid=true;
 			}
 		}
@@ -254,8 +258,9 @@ public class EventIT_UI extends HttpServlet {
 				session.setAttribute("Login_Name", username);
 				session.setAttribute("firstname", firstname);
 				request.setAttribute("Login_Name",username);
-				System.out.println(user.firstname);
-				 map.put("Firstname", user.firstname);
+				session.setAttribute("lmode", "gmail");
+				//System.out.println(user.firstname);
+				 map.put("Firstname", firstname);
 				isValid=true;
 			}
 		}
@@ -289,7 +294,7 @@ public class EventIT_UI extends HttpServlet {
 				e.printStackTrace();
 			}
 			if(user!=null){
-				result=user.updateuser(username, password, firstname, lastname, phone, address);
+				result=user.updateuser(username, password, firstname, lastname, phone, address,0,0);
 				
 			}
 			if(result==true)
@@ -447,10 +452,16 @@ public class EventIT_UI extends HttpServlet {
 		phone=request.getParameter("phone_value");
 		address=request.getParameter("address_value");
 		String username=(session.getAttribute("Login_Name").toString());
+		try {
+			user=dbconnect.getuser(username);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	    if(user!=null)
 	    {
 	    	
-	    	result=user.updateuser(user.email, user.password, firstname, user.lastname, phone, address);
+	    	result=user.updateuser(user.email, user.password, firstname, user.lastname, phone, address,user.rating,user.total_rating);
 	    	
 	    	if(result==true)
 			{
@@ -479,11 +490,17 @@ public class EventIT_UI extends HttpServlet {
 		password=request.getParameter("newpass");
 		String old_password=request.getParameter("oldpass");
 		boolean result=false,isValid=false;
+		try {
+			user=dbconnect.getuser(username);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(user!=null)
 	    {
 	    	if(old_password.equals(user.password))
 	    		
-	    		result=user.updateuser(user.email, password, user.firstname, user.lastname, user.phone, user.address);
+	    		result=user.updateuser(user.email, password, user.firstname, user.lastname, user.phone, user.address,user.rating,user.total_rating);
 	    	
 	    	if(result==true)
 			{
@@ -518,6 +535,17 @@ public class EventIT_UI extends HttpServlet {
 		 session.removeAttribute("Login_Name");
 		 map.put("isvalid", true);
 		 System.out.println("logged out");
+		 try{
+		 String mode=(session.getAttribute("lmode").toString());
+		 map.put("lmode",mode);
+		 session.removeAttribute("lmode");
+		 }
+		 catch(Exception e)
+		 {
+			 map.put("lmode","");
+		 }
+		 session.removeAttribute("firstname");
+		 
 		try{
 			write(response,map);
 			}

@@ -27,7 +27,7 @@ import OOAD.PROJECT.EVENTIT.Model.observer;
  * Servlet implementation class Ticket_UI
  */
 @WebServlet("/Ticket_UI")
-public class Ticket_UI extends HttpServlet {
+public class Ticket_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	public Ticket ticket;
@@ -47,6 +47,7 @@ public class Ticket_UI extends HttpServlet {
 		Map<String,Object> map=new HashMap<String,Object>();
 		dbconnect=new DBcontroller();
 		String mode=request.getParameter("mode");
+		System.out.println(mode);
 		if(mode.equals("registerall"))
 		{
 			register(request, response, map);
@@ -71,6 +72,11 @@ public class Ticket_UI extends HttpServlet {
 		{
 			
 			cancel_event(request, response, map);
+		}
+		if(mode.equals("update_event"))
+		{
+			
+			update_event(request, response, map);
 		}
 		
 		
@@ -115,6 +121,31 @@ public void cancel(HttpServletRequest request, HttpServletResponse response,Map<
 		}
 		
 	}
+public void update_event(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
+	System.out.println("isvalid");
+	int eventid=Integer.parseInt(request.getParameter("eventid"));
+	String descr=request.getParameter("decr");
+	String date=request.getParameter("date");
+	String time=request.getParameter("time");
+	String venue=request.getParameter("venue");
+	boolean isvalid=false;
+	try {
+		Event ev=dbconnect.getevent(eventid);
+		ev.changeDetails(descr,ev.dates,ev.time,venue);
+		dbconnect.cancelEvent(ev);
+		isvalid=dbconnect.saveEvent(ev);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	map.put("isvalid3", isvalid);
+	try {
+		write(response,map);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 public void cancel_event(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
 	
     Ticket ti;
@@ -284,11 +315,11 @@ public void displaybrowseevents_user(HttpServletRequest request, HttpServletResp
 	
 }
 public void displaybrowseevents_user_past(HttpServletRequest request, HttpServletResponse response,Map<String, Object> map){
-	
+	HttpSession session = request.getSession(true);
 	Worklist wl=null;
 	Event ev=null;
 	boolean isvalid=false;
-	String username1=(getServletContext().getAttribute("Login_Name").toString());
+	String username1=(session.getAttribute("Login_Name").toString());
 	try {
 		
 		ev=dbconnect.getallevents_registed_user(username1);

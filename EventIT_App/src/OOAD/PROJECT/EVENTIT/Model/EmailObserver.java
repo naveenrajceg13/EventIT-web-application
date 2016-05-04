@@ -31,10 +31,11 @@ public class EmailObserver implements observer {
 	
      public void sendmessage(String msg, String u,String sub) throws MessagingException
 	{
+		
 		String host = "smtp.gmail.com";
 	    String password = "Thenewlife1.";
 	    String from = "naveenrajceg13@gmail.com";
-	    String toAddress = "naveenrajp.erode@gmail.com";
+	    String toAddress = u;
 	   
 
 	    Properties properties = System.getProperties();
@@ -59,7 +60,7 @@ public class EmailObserver implements observer {
 	        Transport transport = session.getTransport("smtps");
 	        transport.connect(host, from, password);
 	        transport.sendMessage(message, message.getAllRecipients());
-	        System.out.println("Mail Sent Successfully");
+	        //System.out.println("Mail Sent Successfully");
 	        transport.close();
 	    } catch (SendFailedException sfe){
 	        System.out.println(sfe);

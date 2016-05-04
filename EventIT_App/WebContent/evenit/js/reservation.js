@@ -14,7 +14,12 @@ $(document).ready(function() {
 
 	console.log(run);
 	myFunction_up();
-
+	$( ".oneh" ).show();
+  	$( ".oneb" ).show();
+  	$( ".onec" ).show();
+  	$( ".oner" ).show();
+  	$( ".tonep" ).show();
+  	$( ".tonem" ).hide();
 });
 function myFunction_1(a) {
 

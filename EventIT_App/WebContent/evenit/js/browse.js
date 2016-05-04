@@ -10,7 +10,8 @@ var elementcategory;
 var success = false; 
 $(document).ready(function(){ 
         
-	
+	    
+	    
         $.ajax({
       	   url:'../Browse_UI',
       	   type:'POST',

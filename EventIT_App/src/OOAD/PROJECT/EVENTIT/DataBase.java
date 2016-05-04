@@ -52,7 +52,7 @@ public class DataBase {
 		}
 		return rs;
 	}
-	public boolean saveuser(String emailid,String password,String fname,String lname,String phone,String address,Connection con)
+	public boolean saveuser(String emailid,String password,String fname,String lname,String phone,String address,float rating,int total_rating,Connection con)
 	{
 		Statement st;
 		String query1="Delete from users where Email='"+emailid+"'";
@@ -63,10 +63,11 @@ public class DataBase {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		String query="Insert into users values ('"+emailid+"','"+password+"','"+fname+"','"+lname+"','"+phone+"','"+address+"')";
+		String query="Insert into  `users` (`Email`, `Password`, `FirstName`, `LastName`, `Phone`, `Address`, `Rating`, `total_rating`) VALUES  ('"+emailid+"','"+password+"','"+fname+"','"+lname+"','"+phone+"','"+address+"',"+rating+","+total_rating+")";
     	
 		try {
 			st = con.createStatement();
+			System.out.println(query);
 			int rows=st.executeUpdate(query);
 			if(rows==0)
 			{
@@ -158,7 +159,7 @@ public class DataBase {
 		java.sql.Time time_value = null;
 		java.sql.Date finalvalue=null;
 		try {
-			date_Value=df.parse(dates);
+			 date_Value=df.parse(dates);
 			 java.util.Date d1 =(java.util.Date)format.parse(time);
              java.sql.Time ppstime = new java.sql.Time(d1.getTime());
 		    finalvalue=new java.sql.Date(date_Value.getTime());

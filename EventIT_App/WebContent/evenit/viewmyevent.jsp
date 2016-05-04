@@ -30,6 +30,15 @@
 	.form-control{
 		width:800px
 		}
+	
+
+.inline_display{
+	display: inline-flex;
+	}
+	.navbar-right .active a {
+    background-color: transparent;
+    color: #fb130b !important;
+    }
 	</style>
    
 </head><!--/head-->
@@ -51,14 +60,16 @@
 		                </div>                    
 		            </div>
 		            <div class="collapse navbar-collapse">
-                    	<div class="nav navbar-nav navbar-right">
-		                   	<li class="scroll nav navbar-nav navbar-right"><a href="home.jsp">Home</a></li>
-		                    <li class="scroll active nav navbar-nav navbar-right"><a href="browse.jsp">Browse Events</a></li>                            <li class="scroll nav navbar-nav navbar-right"><a href="event.jsp">Create Event</a></li>
-                            <li class="scroll nav navbar-nav navbar-right"><a href="manage.jsp">Manage Worklist</a></li>
-		                    <li class="scroll nav navbar-nav navbar-right"><a href="reservationHistory.jsp">Reservation History</a></li>
-                            <li class="scroll"><a href="myprofile.jsp">My Profile</a></li>
-               				<li class="scroll"><a href="#" onclick="javascript:logout()">Logout</a></li>
-		              	</div>
+                    	<div class="nav navbar-nav navbar-right"> 
+		                    <div class="inline_display" id="oneh"><li class="scroll active"><a href="home.jsp">Home</a></li></div>
+		                    <div class="inline_display" id="oneb"><li class="scroll "><a href="browse.jsp">Browse Events</a></li>  </div>                       
+		                    <div class="inline_display" id="onec"><li class="scroll "><a href="event.jsp">Create Event</a></li></div>
+                            <div class="inline_display" id="onem"><li class="scroll "><a href="manage.jsp">Manage Worklist</a></li></div>
+		                    <div class="inline_display" id="oner"><li class="scroll "><a href="reservationHistory.jsp">Reservation History</a></li></div>
+                            <div class="inline_display" id="onep"><li class="scroll "><a href="myprofile.jsp">My Profile</a></li></div>
+                            <div class="inline_display" id="onel"><li class="scroll "><a href="#" onclick="javascript:logout()">Logout</a></li></div>
+                     	</div>
+
 		            </div>
 		        </div>
 	        </div>
@@ -70,7 +81,7 @@
     <section id="create" style="min-height:500px;margin-top:95px;position:relative;color:black;width:80%;">	
 		<table class="table table-bordered">
             <tr>
-                <td colspan="2" style="text-align:center"><h3>Ticket Details</h3></td>
+                <td colspan="2" style="text-align:center"><h3>Event Details</h3></td>
             </tr>
             <tr>
                 <td>Event Name:</td>
@@ -78,33 +89,35 @@
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><textarea placeholder="Description" class="form-control" id="descr" readonly></textarea></td>
+                <td><textarea placeholder="Description" class="form-control" id="descr" ></textarea></td>
             </tr>
             <tr>
                 <td>Venue:</td>
-                <td><textarea placeholder="Address" class="form-control" id="venue" readonly></textarea></td>
+                <td><textarea placeholder="Address" class="form-control" id="venue" ></textarea></td>
             </tr>
             <tr>
                 <td>Date:</td>
-                <td><input type="text" placeholder="Event date" class="form-control datepicker" id="dates" name="date" readonly/></td>
+                <td><input type="text" placeholder="Event date" class="form-control datepicker" id="dates" name="date" /></td>
             </tr>
             <tr>
                 <td>Event Category:</td>
-                <td><input type="text" placeholder="Event Category"  id="category" class="form-control" name="category" readonly/></td>
+                <td><input type="text" placeholder="Event Category"  id="category" class="form-control" name="category" /></td>
             </tr>
             <tr>
                 <td>Time:</td>
-                <td><input type="text"  id="time" class="form-control" name="time" readonly/></td>
+                <td><input type="text"  id="time" class="form-control" name="time" /></td>
             </tr>
 			<tr>
                 <td>Number of tickets:</td>
-                <td><input type="text" placeholder="No of tickets purchased" class="form-control" name="tickets" id="tickets" readonly />
+                <td><input type="text" placeholder="No of tickets purchased" class="form-control" name="tickets" id="tickets"  />
                 </td>
             </tr>
             
             <tr>
                 <td colspan="3" style="text-align:center">
                 	<input type="button" id="register" value="Cancel Event" class="btn btn-primary" style="background-color:#1B7B98" />
+                
+                	<input type="button" id="update_event" value="Update Event" class="btn btn-primary" style="background-color:#1B7B98" />
                 </td>
             </tr>
         </table>

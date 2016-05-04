@@ -2,7 +2,12 @@
 
  $(document).ready(function() {
 
-	
+	 $( "#onem" ).show();
+   	 $( "#oneh" ).hide();
+   	 $( "#oneb" ).hide();
+   	 $( "#onec" ).hide();
+   	 $( "#oner" ).hide();
+   	 $( "#onep" ).hide();
 	 var obj=JSON.parse(localStorage.getItem("obj"));
 	 document.getElementById("eventname").value=obj.eventname;
 	 document.getElementById("descr").value=obj.eventdescr;
